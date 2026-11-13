@@ -292,6 +292,16 @@ url("https://images.unsplash.com/photo-1775250869743-d08c72844f6e?auto=format&fi
 filter:saturate(.65) hue-rotate(342deg) brightness(.82)!important}
 body::after{background:linear-gradient(180deg,transparent 20%,rgba(7,1,6,.54))!important}
 @media(max-width:600px){body::before{background-position:center top!important;background-size:cover!important}}
+
+/* Make photographic velvet folds visible without brightening the menu */
+body::before{
+ background:
+ linear-gradient(90deg,rgba(12,1,8,.20),rgba(25,2,14,.07) 48%,rgba(12,1,8,.25)),
+ linear-gradient(180deg,rgba(14,1,9,.04),rgba(9,1,7,.26)),
+ url("https://images.unsplash.com/photo-1775250869743-d08c72844f6e?auto=format&fit=crop&w=1600&q=85") center top / cover no-repeat!important;
+ filter:saturate(.85) hue-rotate(342deg) brightness(1.02) contrast(1.17)!important;
+}
+body::after{background:linear-gradient(180deg,transparent 35%,rgba(7,1,6,.24))!important}
 </style>
 </head>
 <body>
