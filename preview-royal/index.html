@@ -232,6 +232,20 @@ body::after{background:linear-gradient(90deg,rgba(3,0,3,.46),transparent 20%,tra
 .ambient::before{background:none!important}
 .brand-art{animation:emblem-entrance 1.2s ease-out both!important}
 @media(max-width:600px){body::before{background-position:center top!important;background-size:auto 100%!important}.wrap{width:min(calc(100% - 28px),440px)}.btn{min-height:72px}.social .btn{min-height:56px}}
+
+/* Approved mobile reference: luminous gold-rimmed velvet navigation */
+main{margin-top:35px}
+.btn{min-height:76px;border-radius:15px;border:1.5px solid #cf9c43;background:linear-gradient(180deg,rgba(100,8,31,.97) 0%,rgba(71,5,23,.98) 48%,rgba(39,3,15,.99) 100%);box-shadow:inset 0 1px 0 rgba(255,223,145,.28),inset 0 -1px 0 rgba(170,88,29,.3),0 8px 23px rgba(0,0,0,.28);position:relative;overflow:visible;gap:15px}
+.btn::after{content:"";position:absolute;pointer-events:none;top:-2px;left:30%;width:40%;height:3px;background:linear-gradient(90deg,transparent,#ffcd6d 45%,#fff3c6 50%,#ffcd6d 55%,transparent);filter:blur(2px);opacity:.8}
+.btn .ic{border:none;background:none;border-radius:0;color:#e9b85d;width:40px;font-size:23px}
+.btn .tx strong{font:600 17px/1.25 Cinzel,serif;letter-spacing:.045em;color:#f3d89a}
+.btn .tx small{color:#d4bca6}
+.btn.primary{background:linear-gradient(180deg,#7c102e,#430719);border-color:#e3b45d}
+.count-item{background:linear-gradient(160deg,#4d071d,#270511);border:1px solid #c89b4e;box-shadow:inset 0 1px 0 rgba(250,202,111,.17),0 8px 19px rgba(0,0,0,.25);position:relative}
+.count-item b{color:#f0c77b}
+.section-label{color:#e8c17a}
+.tagline{color:#f5d58b}
+@media(max-width:600px){.wrap{width:min(calc(100% - 32px),440px)}.brand-art{width:min(83%,350px)}.btn{min-height:79px;padding:13px 17px}.btn .tx strong{font-size:16px}.count-item b{font-size:clamp(21px,7vw,31px)}}
 </style>
 </head>
 <body>
