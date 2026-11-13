@@ -257,6 +257,24 @@ main{margin-top:35px}
 .btn .arr{color:var(--gold-bright);font-size:23px}
 .btn.off{opacity:.62}
 @media(max-width:600px){.btn{min-height:72px;padding:12px 13px}.btn .tx strong{font-size:15px}}
+
+/* Screenshot-matched deep burgundy palette, original circular symbols and card layout */
+:root{--bg:#10040b;--bg-soft:#190710;--panel:#240913;--panel-hi:#34101e;--cream:#f4e7e1;--muted:#c4a9ad;--gold:#c49a56;--gold-bright:#dfbc83;--gold-dim:#76512e;--wine:#65172f;--wine-hi:#7a213a;--line:rgba(195,145,77,.65)}
+body{background:#10040b!important}
+body::before{background:linear-gradient(180deg,rgba(13,2,9,.3),rgba(8,1,6,.7)),url("assets/velvet-curtain.svg") center top / cover no-repeat!important}
+body::after{background:linear-gradient(90deg,rgba(4,0,4,.48),transparent 18%,transparent 82%,rgba(4,0,4,.48)),linear-gradient(180deg,transparent 15%,rgba(5,0,5,.64))!important}
+.btn,.btn.primary{border:1px solid rgba(193,143,73,.8)!important;border-radius:18px!important;background:linear-gradient(115deg,#661a33 0%,#3b0d21 46%,#1c0713 100%)!important;box-shadow:inset 0 1px 0 rgba(239,189,130,.1),0 10px 24px rgba(0,0,0,.28)!important;min-height:76px!important;padding:14px 20px!important;gap:18px!important}
+.btn.primary{background:linear-gradient(115deg,#7a213b 0%,#52152b 50%,#290b1b 100%)!important}
+.btn::after{display:none!important}
+.btn .ic{width:59px!important;height:59px!important;flex:0 0 59px!important;border:1px solid #b8894e!important;border-radius:50%!important;background:radial-gradient(circle at 35% 20%,rgba(130,46,65,.4),rgba(39,8,21,.65))!important;color:#e4bf83!important;font:400 25px/1 Lato,sans-serif!important;display:grid!important;place-items:center!important}
+.btn .tx strong{font:700 20px/1.3 Lato,system-ui,sans-serif!important;letter-spacing:-.015em!important;color:#f4e7e1!important}
+.btn .tx small{font:400 15px/1.35 Lato,system-ui,sans-serif!important;color:#c5aab0!important;margin-top:4px!important}
+.soon{font-size:12px!important;border:1px solid rgba(184,134,65,.65)!important;color:#d5a65b!important;padding:6px 13px!important}
+.hotel{background:linear-gradient(130deg,rgba(51,11,27,.94),rgba(24,5,15,.97))!important;border-color:rgba(193,143,73,.7)!important;border-radius:18px!important;padding:22px!important}
+.hotel h3{font-size:21px!important}
+.hotel ul{font-size:16px!important}
+.code{font-size:14px!important}
+@media(max-width:600px){.btn,.btn.primary{min-height:72px!important;padding:12px 12px!important;gap:11px!important;border-radius:15px!important}.btn .ic{width:43px!important;height:43px!important;flex-basis:43px!important;font-size:20px!important}.btn .tx strong{font-size:16px!important}.btn .tx small{font-size:12px!important}.soon{font-size:9px!important;padding:4px 7px!important}.hotel{padding:15px!important}.hotel h3{font-size:17px!important}.hotel ul{font-size:13px!important}}
 </style>
 </head>
 <body>
