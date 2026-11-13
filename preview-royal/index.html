@@ -132,31 +132,45 @@ a.btn:hover,a.btn:focus-visible{box-shadow:0 0 0 1px rgba(229,199,134,.22),0 9px
 .reveal-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.ambient{display:none}.hero::before{animation:none}.brand-art,.countdown{animation:none!important}.reveal-ready .reveal{opacity:1;transform:none;transition:none}a.btn::before,.hotel::after{display:none}}
 
-/* Burgundy velvet stage curtain: soft theatrical folds and directional light */
-body{background:#14080e}
+/* Theatrical velvet: sculpted pleats, velvet nap and stage lighting */
+body{background:#10050b}
 body::before{
  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
  background:
- radial-gradient(ellipse 65% 48% at 50% 4%,rgba(181,71,90,.27),transparent 80%),
- radial-gradient(ellipse 40% 95% at 50% 45%,rgba(13,5,9,.55),transparent 100%),
+ radial-gradient(ellipse 55% 43% at 50% -9%,rgba(255,192,157,.30),transparent 78%),
+ radial-gradient(ellipse 92% 67% at 50% 10%,rgba(135,23,49,.20),transparent 77%),
+ linear-gradient(90deg,rgba(5,1,5,.60),transparent 20%,transparent 80%,rgba(5,1,5,.68)),
  repeating-linear-gradient(90deg,
-   rgba(5,1,4,.62) 0%,rgba(39,8,19,.34) 4%,rgba(125,33,52,.30) 9%,
-   rgba(76,14,32,.14) 13%,rgba(8,2,8,.60) 19%,rgba(58,12,28,.36) 24%,
-   rgba(140,39,60,.27) 29%,rgba(12,3,10,.63) 35%,rgba(5,1,4,.62) 40%),
- linear-gradient(180deg,#491020 0%,#300b18 27%,#230914 66%,#10070d 100%);
- background-size:100% 100%,100% 100%,clamp(320px,72vw,850px) 100%,100% 100%;
- box-shadow:inset 0 0 130px 42px rgba(4,1,5,.48);
+ #100309 0%,#270711 3%,#591227 8%,#87233c 11%,#5c142a 14%,
+ #2a0713 18%,#12040a 21%,#1a0510 23%,#451023 28%,
+ #742039 32%,#4d1025 36%,#18040c 41%,#0b0207 44%,
+ #270713 47%,#6b1b35 53%,#8a2842 56%,#5b142b 59%,
+ #20050f 65%,#100309 69%);
+ background-size:100% 100%,100% 100%,100% 100%,clamp(430px,100vw,1150px) 100%;
+ filter:contrast(1.08);
 }
 body::after{
- content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.23;
- background:repeating-linear-gradient(0deg,transparent 0px,rgba(255,218,194,.055) 1px,transparent 2px,transparent 5px);
- mix-blend-mode:soft-light;
+ content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:linear-gradient(180deg,rgba(10,2,8,.08),rgba(9,2,7,.14) 35%,rgba(4,1,5,.62) 100%);
+ box-shadow:inset 0 0 120px 30px rgba(4,1,5,.6);
 }
+.velvet-texture{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.23;mix-blend-mode:soft-light}
+.stage-light{position:fixed;inset:-10% 0 0;z-index:0;pointer-events:none;background:conic-gradient(from 171deg at 50% -4%,transparent 0deg,rgba(235,167,131,.045) 8deg,transparent 19deg,transparent 341deg,rgba(235,167,131,.045) 352deg,transparent 360deg);animation:stage-light-breathe 12s ease-in-out infinite alternate}
+@keyframes stage-light-breathe{from{opacity:.5}to{opacity:1}}
 .ambient{z-index:0}
 .wrap{z-index:1}
+@media(max-width:600px){body::before{background-size:100% 100%,100% 100%,100% 100%,560px 100%}.velvet-texture{opacity:.18}}
+@media(prefers-reduced-motion:reduce){.stage-light{animation:none}}
 </style>
 </head>
 <body>
+<svg class="velvet-texture" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<filter id="velvet-grain" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency=".42 .82" numOctaves="3" seed="17" stitchTiles="stitch"/>
+<feColorMatrix type="saturate" values="0"/>
+</filter>
+<rect width="100%" height="100%" filter="url(#velvet-grain)" opacity=".7"/>
+</svg><div class="stage-light" aria-hidden="true"></div>
 <div class="ambient" aria-hidden="true"><i style="--x:8%;--s:2px;--d:19s;--delay:-2s;--dx:42px"></i><i style="--x:17%;--s:3px;--d:25s;--delay:-14s;--dx:-34px"></i><i style="--x:27%;--s:2px;--d:22s;--delay:-7s;--dx:50px"></i><i style="--x:37%;--s:2px;--d:28s;--delay:-19s;--dx:-25px"></i><i style="--x:49%;--s:3px;--d:24s;--delay:-11s;--dx:45px"></i><i style="--x:60%;--s:2px;--d:20s;--delay:-4s;--dx:-48px"></i><i style="--x:72%;--s:2px;--d:27s;--delay:-21s;--dx:31px"></i><i style="--x:84%;--s:3px;--d:23s;--delay:-16s;--dx:-42px"></i><i style="--x:94%;--s:2px;--d:26s;--delay:-8s;--dx:30px"></i><i style="--x:43%;--s:1px;--d:30s;--delay:-23s;--dx:-20px"></i></div>
 <div class="wrap">
 <header class="hero">
