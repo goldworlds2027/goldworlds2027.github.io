@@ -3,240 +3,439 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b0c">
 <title>Gold Worlds 2027</title>
 <meta name="description" content="Line Dance World Championship – Gold Worlds 2027, Schwechat / Vienna, 2–5 December 2027">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Great+Vibes&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
-/* =====================================================================
-   ODKAZY – tady se upravuje obsah. Prázdný odkaz "" = tlačítko ukáže
-   "Již brzy / Coming soon" a nedá se na něj kliknout.
-   ===================================================================== */
+/* Event links – an empty value displays a disabled “Coming soon” item. */
 const LINKS = {
-  website:      "",   // oficiální web akce
-  registration: "",   // registrace soutěžících / vstupenky
-  heinhotel:    "",   // rezervace HEINhotel (odkaz nebo mailto:adresa@...)
-  reinisch:     "",   // rezervace Das Reinisch
-  shuttle:      "",   // rezervace kyvadlové dopravy
-  tour:         "",   // Worlds Sightseeing Tour
-  song:         "",   // oficiální song (YouTube / Spotify)
-  facebook:     "",
-  instagram:    "",
-  email:        ""    // kontaktní e-mail pořadatele (jen adresa, bez mailto:)
+  website: "", registration: "", heinhotel: "", reinisch: "",
+  shuttle: "", tour: "", song: "", facebook: "", instagram: "", email: ""
 };
 const CODES = { heinhotel: "Linedance WM", reinisch: "Linedance" };
 </script>
 <style>
 :root{
-  --bg:#0b0907; --panel:#16110d; --cream:#f6ecd9; --muted:#c9b99a;
-  --gold:#d4a84b; --gold-hi:#f3d98b; --gold-lo:#9c7425;
-  --wine:#7d1426; --wine-hi:#a01d33;
+  color-scheme:dark;
+  --bg:#100b0c; --bg-soft:#181012; --panel:#1b1214; --panel-hi:#241619;
+  --cream:#f3eadb; --muted:#b9aa98; --gold:#c9a15a; --gold-bright:#e5c786;
+  --gold-dim:#765a32; --wine:#751b2b; --wine-hi:#8e2637;
+  --line:rgba(201,161,90,.48); --shadow:0 18px 50px rgba(0,0,0,.28);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg)}
+html{background:var(--bg);scroll-behavior:smooth}
 body{
-  min-height:100vh;color:var(--cream);font:16px/1.5 Lato,system-ui,sans-serif;
+  min-height:100vh;color:var(--cream);font:16px/1.55 Lato,system-ui,sans-serif;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(125,20,38,.35),transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 100%,rgba(212,168,75,.12),transparent 70%),
+    radial-gradient(ellipse 68% 28% at 50% 13%,rgba(104,14,38,.54),transparent 80%),
+    radial-gradient(ellipse 48% 25% at 50% 66%,rgba(100,16,38,.16),transparent 78%),
     var(--bg);
 }
-.wrap{max-width:520px;margin:0 auto;padding:20px 16px 48px}
-
-/* jazyky */
-.lang{display:flex;justify-content:flex-end;gap:6px}
-.lang button{
-  background:none;border:1px solid var(--gold-lo);color:var(--muted);
-  font:700 12px Lato,sans-serif;letter-spacing:.08em;padding:5px 9px;border-radius:999px;cursor:pointer
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(100% - 28px,520px);margin:0 auto;padding:18px 0 36px}
+.hero{text-align:center;padding:2px 0 0}
+.brand-art{
+  display:block;width:min(78%,345px);height:auto;max-height:490px;object-fit:contain;
+  margin:0 auto 12px;filter:drop-shadow(0 14px 28px rgba(0,0,0,.18));
 }
-.lang button[aria-pressed="true"]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-
-/* hlavička */
-header{text-align:center;padding:12px 0 8px}
-.crown{width:64px;height:auto;display:block;margin:0 auto 6px;filter:drop-shadow(0 2px 6px rgba(212,168,75,.4))}
-h1{
-  font:800 clamp(40px,12vw,58px)/1 Cinzel,serif;letter-spacing:.02em;
-  background:linear-gradient(180deg,var(--gold-hi) 0%,var(--gold) 45%,var(--gold-lo) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent
+.brand-fallback{padding:18px 0 4px}
+.brand-fallback .eyebrow{font:600 10px Cinzel,serif;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+.brand-fallback h1{
+  margin:8px 0 2px;font:700 clamp(36px,10vw,52px)/1.08 Cinzel,serif;letter-spacing:.015em;
+  color:var(--gold-bright);
 }
-h1 .yr{display:block;font-family:"Great Vibes",cursive;font-weight:400;font-size:.9em;margin-top:2px}
-.sub{font:600 13px Cinzel,serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
-.ribbon{
-  display:inline-block;margin-top:14px;padding:8px 22px;background:linear-gradient(180deg,var(--wine-hi),var(--wine));
-  border:1px solid var(--gold);border-radius:4px;font:700 17px Cinzel,serif;color:var(--gold-hi);letter-spacing:.05em
+.brand-fallback .year{font:400 46px/1.2 "Great Vibes",cursive;color:var(--gold)}
+.brand-fallback .place{font:400 28px "Great Vibes",cursive;color:var(--cream);margin-top:4px}
+.brand-fallback .date{display:inline-block;margin-top:14px;padding:7px 20px;border:1px solid var(--gold-dim);border-radius:3px;color:var(--gold-bright);font:600 13px Cinzel,serif;letter-spacing:.08em}
+.countdown{margin:15px 0 0}
+.section-label{
+  display:flex;align-items:center;gap:12px;justify-content:center;margin:0 0 13px;
+  color:var(--gold);font:600 11px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;
 }
-.place{margin-top:10px;font-family:"Great Vibes",cursive;font-size:28px;color:var(--gold)}
-
-/* odpočet */
-.count{display:flex;justify-content:center;gap:10px;margin:18px 0 6px}
-.count div{min-width:64px;padding:8px 4px;border:1px solid var(--gold-lo);border-radius:8px;background:var(--panel);text-align:center}
-.count b{display:block;font:800 22px Cinzel,serif;color:var(--gold-hi)}
-.count span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-
-.divider{display:flex;align-items:center;gap:10px;margin:26px 0 12px;color:var(--gold);font:600 13px Cinzel,serif;letter-spacing:.16em;text-transform:uppercase}
-.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo),transparent)}
-
-/* tlačítka */
+.section-label:before,.section-label:after{content:"";height:1px;flex:1;max-width:105px;background:linear-gradient(90deg,transparent,var(--gold-dim))}
+.section-label:after{transform:scaleX(-1)}
+.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.count-item{
+  min-width:0;text-align:center;padding:10px 4px 8px;border:1px solid var(--line);border-radius:9px;
+  background:linear-gradient(155deg,rgba(36,22,25,.92),rgba(19,13,14,.96));
+}
+.count-item b{display:block;color:var(--gold-bright);font:600 clamp(23px,7vw,31px)/1.25 Cinzel,serif;font-variant-numeric:tabular-nums}
+.count-item span{display:block;margin-top:2px;color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.tagline{display:block;width:100%;text-align:center!important;margin:17px auto 0;color:var(--gold-bright);font:400 clamp(23px,6vw,29px)/1.3 "Great Vibes",cursive}
+main{margin-top:25px}
+.group-label{margin:25px 0 12px}
 .btn{
-  display:flex;align-items:center;gap:14px;width:100%;margin-bottom:10px;padding:14px 16px;
-  background:linear-gradient(180deg,#1d1611,var(--panel));border:1px solid var(--gold-lo);border-radius:12px;
-  color:var(--cream);text-decoration:none;transition:border-color .15s,transform .15s
+  display:flex;align-items:center;gap:13px;width:100%;margin:0 0 9px;padding:12px 14px;
+  min-height:70px;background:linear-gradient(110deg,rgba(35,23,25,.92),rgba(24,16,18,.96));
+  border:1px solid var(--line);border-radius:13px;color:var(--cream);text-decoration:none;
+  transition:border-color .2s ease,background .2s ease,transform .2s ease;
 }
-a.btn:hover,a.btn:focus-visible{border-color:var(--gold-hi);transform:translateY(-1px)}
-.btn.primary{background:linear-gradient(180deg,var(--wine-hi),var(--wine));border-color:var(--gold)}
-.btn .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(212,168,75,.14);color:var(--gold-hi);font-size:19px}
+a.btn:hover,a.btn:focus-visible{border-color:var(--gold-bright);background:var(--panel-hi);transform:translateY(-1px);outline:none}
+.btn.primary{background:linear-gradient(110deg,#762031,#50131f);border-color:rgba(229,199,134,.72)}
+.btn.primary:hover,.btn.primary:focus-visible{background:linear-gradient(110deg,#84263a,#5a1725)}
+.btn .ic{
+  flex:none;width:40px;height:40px;border:1px solid rgba(201,161,90,.45);border-radius:50%;
+  display:grid;place-items:center;color:var(--gold-bright);font-size:17px;background:rgba(201,161,90,.07)
+}
 .btn .tx{flex:1;min-width:0}
-.btn .tx strong{display:block;font-weight:700}
-.btn .tx small{display:block;color:var(--muted);font-size:13px}
-.btn .arr{color:var(--gold);font-size:20px}
-.btn.off{opacity:.5;cursor:default}
+.btn .tx strong{display:block;font-size:15px;font-weight:700;line-height:1.3}
+.btn .tx small{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.35}
+.btn .arr{color:var(--gold-bright);font-size:23px;line-height:1;padding:0 2px}
+.btn.off{opacity:.62;cursor:default}
 .btn.off .arr{display:none}
-.soon{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-lo);border-radius:999px;padding:2px 8px}
+.soon{flex:none;border:1px solid var(--gold-dim);border-radius:999px;padding:3px 8px;color:var(--gold);font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.hotel{padding:15px;margin:0 0 11px;border:1px solid var(--line);border-radius:13px;background:rgba(27,18,20,.82)}
+.hotel h3{font:600 16px Cinzel,serif;color:var(--gold-bright)}
+.hotel ul{list-style:none;margin:8px 0 12px;color:var(--muted);font-size:13px}
+.hotel li{margin:3px 0}
+.hotel li:before{content:"•";color:var(--gold);margin-right:8px}
+.code{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border:1px dashed var(--gold-dim);border-radius:8px;margin-bottom:10px;font-size:12px;color:var(--muted)}
+.code b{color:var(--gold-bright);letter-spacing:.04em}
+.code button{background:var(--gold);color:#171012;border:0;border-radius:6px;padding:6px 10px;font:700 11px Lato,sans-serif;cursor:pointer}
+.hotel .btn{margin:0;min-height:54px}
+.social{display:flex;gap:9px;margin-top:4px}
+.social .btn{justify-content:center;min-height:54px;padding:9px}
+.social .btn .ic{width:30px;height:30px}
+.social .btn strong{font-size:13px}
+footer{margin-top:28px;padding:18px 8px 0;text-align:center;color:var(--muted);font-size:11px;border-top:1px solid rgba(201,161,90,.2)}
+footer .brandline{font:600 11px Cinzel,serif;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+footer p+p{margin-top:5px}
+@media(min-width:600px){.wrap{padding-top:28px}.brand-art{width:335px}.countdown{margin-top:20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
-/* hotely */
-.hotel{border:1px solid var(--gold-lo);border-radius:12px;background:var(--panel);padding:16px;margin-bottom:12px}
-.hotel h3{font:700 18px Cinzel,serif;color:var(--gold-hi)}
-.hotel ul{list-style:none;margin:8px 0 12px;color:var(--muted);font-size:14px}
-.hotel li::before{content:"✦ ";color:var(--gold)}
-.code{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border:1px dashed var(--gold);border-radius:8px;margin-bottom:10px;font-size:14px}
-.code b{color:var(--gold-hi);letter-spacing:.04em}
-.code button{background:var(--gold);color:var(--bg);border:0;border-radius:6px;padding:6px 10px;font:700 12px Lato,sans-serif;cursor:pointer}
-.hotel .btn{margin:0}
+/* Cinematic, restrained motion layer */
+body{position:relative;isolation:isolate}
+.ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.ambient::before{content:"";position:absolute;inset:-20%;background:radial-gradient(ellipse 45% 35% at 50% 22%,rgba(155,39,64,.17),transparent 80%);animation:ambient-breathe 13s ease-in-out infinite alternate}
+.ambient i{position:absolute;left:var(--x);top:110%;width:var(--s);height:var(--s);border-radius:50%;background:#f1d59a;box-shadow:0 0 10px 2px rgba(230,184,100,.38);opacity:0;animation:gold-drift var(--d) linear infinite;animation-delay:var(--delay)}
+@keyframes ambient-breathe{from{transform:translate3d(-2%,0,0);opacity:.55}to{transform:translate3d(2%,-3%,0);opacity:1}}
+@keyframes gold-drift{0%{transform:translate3d(0,0,0);opacity:0}12%{opacity:.55}72%{opacity:.32}100%{transform:translate3d(var(--dx),-125vh,0);opacity:0}}
+.wrap{position:relative;z-index:1}
+.hero{position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;z-index:-1;inset:4% -12% 0;background:radial-gradient(ellipse 50% 45% at 50% 46%,rgba(226,168,87,.18),rgba(117,27,43,.08) 62%,transparent 80%);filter:blur(12px);animation:halo-pulse 9s ease-in-out infinite alternate}
+@keyframes halo-pulse{from{opacity:.55;transform:scale(.95)}to{opacity:1;transform:scale(1.07)}}
+.brand-art{animation:emblem-entrance 1.7s cubic-bezier(.18,.75,.24,1) both,emblem-lustre 9s ease-in-out 1.7s infinite alternate;transform-origin:center}
+@keyframes emblem-entrance{from{opacity:0;transform:translateY(24px) scale(.94);filter:brightness(.6) drop-shadow(0 8px 15px rgba(0,0,0,.12))}to{opacity:1;transform:translateY(0) scale(1);filter:brightness(1) drop-shadow(0 14px 28px rgba(0,0,0,.18))}}
+@keyframes emblem-lustre{from{filter:brightness(.96) drop-shadow(0 10px 22px rgba(0,0,0,.18))}to{filter:brightness(1.13) drop-shadow(0 0 25px rgba(220,164,91,.20))}}
+.countdown{animation:content-enter 1.2s ease .55s both}
+@keyframes content-enter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+.btn,.hotel{position:relative;overflow:hidden}
+a.btn::before,.hotel::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(105deg,transparent 15%,rgba(229,199,134,.10) 48%,transparent 78%);transform:translateX(-110%);transition:opacity .3s ease,transform .8s ease}
+a.btn:hover::before,a.btn:focus-visible::before,.hotel:hover::after{opacity:1;transform:translateX(110%)}
+a.btn:hover,a.btn:focus-visible{box-shadow:0 0 0 1px rgba(229,199,134,.22),0 9px 30px rgba(112,36,52,.22)}
+.hotel{transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease}
+.hotel:hover{border-color:rgba(229,199,134,.7);box-shadow:0 12px 30px rgba(0,0,0,.16);transform:translateY(-2px)}
+.reveal-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.2,.75,.25,1),transform .85s cubic-bezier(.2,.75,.25,1);transition-delay:var(--reveal-delay,0ms)}
+.reveal-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.ambient{display:none}.hero::before{animation:none}.brand-art,.countdown{animation:none!important}.reveal-ready .reveal{opacity:1;transform:none;transition:none}a.btn::before,.hotel::after{display:none}}
 
-.social{display:flex;gap:10px}
-.social .btn{justify-content:center}
+/* Theatrical velvet: sculpted pleats, velvet nap and stage lighting */
+body{background:#10050b}
+body::before{
+ content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+ radial-gradient(ellipse 55% 43% at 50% -9%,rgba(255,192,157,.30),transparent 78%),
+ radial-gradient(ellipse 92% 67% at 50% 10%,rgba(135,23,49,.20),transparent 77%),
+ linear-gradient(90deg,rgba(5,1,5,.60),transparent 20%,transparent 80%,rgba(5,1,5,.68)),
+ repeating-linear-gradient(90deg,
+ #100309 0%,#270711 3%,#591227 8%,#87233c 11%,#5c142a 14%,
+ #2a0713 18%,#12040a 21%,#1a0510 23%,#451023 28%,
+ #742039 32%,#4d1025 36%,#18040c 41%,#0b0207 44%,
+ #270713 47%,#6b1b35 53%,#8a2842 56%,#5b142b 59%,
+ #20050f 65%,#100309 69%);
+ background-size:100% 100%,100% 100%,100% 100%,clamp(430px,100vw,1150px) 100%;
+ filter:contrast(1.08);
+}
+body::after{
+ content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:linear-gradient(180deg,rgba(10,2,8,.08),rgba(9,2,7,.14) 35%,rgba(4,1,5,.62) 100%);
+ box-shadow:inset 0 0 120px 30px rgba(4,1,5,.6);
+}
+.velvet-texture{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.23;mix-blend-mode:soft-light}
+.stage-light{position:fixed;inset:-10% 0 0;z-index:0;pointer-events:none;background:conic-gradient(from 171deg at 50% -4%,transparent 0deg,rgba(235,167,131,.045) 8deg,transparent 19deg,transparent 341deg,rgba(235,167,131,.045) 352deg,transparent 360deg);animation:stage-light-breathe 12s ease-in-out infinite alternate}
+@keyframes stage-light-breathe{from{opacity:.5}to{opacity:1}}
+.ambient{z-index:0}
+.wrap{z-index:1}
+@media(max-width:600px){body::before{background-size:100% 100%,100% 100%,100% 100%,560px 100%}.velvet-texture{opacity:.18}}
+@media(prefers-reduced-motion:reduce){.stage-light{animation:none}}
 
-footer{margin-top:32px;text-align:center;color:var(--muted);font-size:13px}
-footer .orn{color:var(--gold);letter-spacing:.4em}
+/* Grand theatre treatment: parted velvet curtains framing the real content */
+.stage-curtains{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.stage-curtains .backdrop{position:absolute;inset:0;background:
+radial-gradient(ellipse 65% 42% at 50% 5%,rgba(148,38,65,.4),transparent 80%),
+repeating-linear-gradient(90deg,#13040b 0%,#360a1b 4%,#6a1932 7%,#3d0c20 11%,#13040c 15%,#0c0308 17%,#441025 21%,#701a34 24%,#290818 28%,#0e030a 32%);
+background-size:100% 100%,380px 100%;filter:brightness(.75)}
+.stage-curtains .wing{position:absolute;top:-3%;bottom:-8%;width:clamp(135px,29vw,490px);background:
+linear-gradient(90deg,rgba(7,0,5,.9),transparent 12%,rgba(251,106,125,.12) 21%,transparent 27%,rgba(5,0,4,.7) 38%,rgba(242,89,109,.16) 49%,rgba(7,0,5,.85) 58%,rgba(236,80,103,.17) 73%,rgba(8,0,6,.94) 100%),
+repeating-linear-gradient(90deg,#13020b 0%,#4a0b23 8%,#9a2945 14%,#4c0c24 20%,#10020b 27%,#4a0b23 34%);
+box-shadow:inset 0 0 80px #080108,0 0 45px #080108;filter:contrast(1.18)}
+.stage-curtains .wing.left{left:-4%;clip-path:polygon(0 0,100% 0,96% 12%,83% 24%,79% 40%,66% 59%,75% 75%,88% 100%,0 100%)}
+.stage-curtains .wing.right{right:-4%;transform:scaleX(-1);clip-path:polygon(0 0,100% 0,96% 12%,83% 24%,79% 40%,66% 59%,75% 75%,88% 100%,0 100%)}
+.stage-curtains .swag{position:absolute;top:-8%;height:clamp(110px,23vw,260px);width:70%;background:repeating-linear-gradient(102deg,#15030b 0%,#68152d 8%,#a12e4a 12%,#38091b 20%,#10030b 25%);border-radius:0 0 65% 30%;box-shadow:0 18px 35px #0c0209,inset 0 -24px 26px rgba(0,0,0,.75)}
+.stage-curtains .swag.left{left:-8%;transform:rotate(-13deg)}
+.stage-curtains .swag.right{right:-8%;transform:scaleX(-1) rotate(-13deg)}
+.stage-curtains .wing::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(3deg,transparent 0px,rgba(255,190,175,.09) 1px,transparent 3px,transparent 7px);opacity:.35;mix-blend-mode:screen}
+.stage-curtains .spotlight{position:absolute;inset:0;background:radial-gradient(ellipse 46% 55% at 50% 3%,rgba(243,165,114,.16),transparent 90%),linear-gradient(180deg,transparent 45%,rgba(4,0,4,.65));}
+.stage-curtains .wing{animation:curtain-appear 1.8s cubic-bezier(.2,.7,.2,1) both}
+.stage-curtains .wing.left{transform-origin:left top}
+.stage-curtains .wing.right{transform-origin:right top}
+@keyframes curtain-appear{from{opacity:.45;filter:brightness(.55)}to{opacity:1;filter:contrast(1.18)}}
+.wrap{z-index:2}
+@media(max-width:650px){.stage-curtains .wing{width:23vw;min-width:65px;opacity:.82}.stage-curtains .swag{height:105px;width:67%}.stage-curtains .backdrop{background-size:100% 100%,260px 100%}}
+@media(prefers-reduced-motion:reduce){.stage-curtains .wing{animation:none}}
+
+/* Mobile-first theatre refinement: quiet lighting and velvet navigation */
+.hero::before{display:none!important}
+.stage-curtains .spotlight{background:linear-gradient(180deg,rgba(9,2,8,.14),rgba(9,2,8,.08) 35%,rgba(4,0,4,.62) 100%)!important}
+.stage-light{display:none!important}
+.brand-art{animation:emblem-entrance 1.2s cubic-bezier(.18,.75,.24,1) both!important;filter:drop-shadow(0 8px 22px rgba(0,0,0,.36))!important}
+.wrap{width:min(100% - 28px,520px)}
+.btn,.hotel{background:linear-gradient(125deg,rgba(72,15,34,.94),rgba(33,8,19,.96) 64%,rgba(17,5,12,.97));border:1px solid rgba(212,160,92,.53);box-shadow:inset 0 1px 0 rgba(244,190,132,.10),0 9px 22px rgba(5,0,5,.25);backdrop-filter:blur(5px)}
+.btn.primary{background:linear-gradient(120deg,#87213b,#4d1026 70%,#260915);border-color:rgba(234,188,108,.8)}
+.btn .ic{background:radial-gradient(circle at 30% 25%,rgba(215,152,85,.17),rgba(32,8,20,.9));border-color:rgba(227,178,102,.6)}
+.count-item{background:linear-gradient(145deg,rgba(62,10,27,.9),rgba(21,5,13,.96));box-shadow:inset 0 1px 0 rgba(239,193,130,.12),0 5px 20px rgba(5,0,5,.25)}
+.group-label{color:#e8c586}
+@media(max-width:600px){
+ .wrap{width:min(100% - 30px,440px);padding-top:14px}
+ .brand-art{width:min(76%,315px);margin-bottom:10px}
+ .stage-curtains .wing{width:20vw;min-width:48px;opacity:.68}
+ .stage-curtains .swag{height:70px;opacity:.8}
+ .stage-curtains .backdrop{background-size:100% 100%,210px 100%}
+ .btn{min-height:72px;padding:12px 13px}
+ .btn .tx strong{font-size:15px}
+ .btn .tx small{font-size:12px}
+ .count{gap:6px}
+ .count-item{padding:11px 2px}
+}
+@media(max-width:360px){.wrap{width:calc(100% - 22px)}.stage-curtains .wing{opacity:.48}.btn{gap:9px}.soon{font-size:8px;padding:3px 5px}}
+@media(prefers-reduced-motion:reduce){.brand-art{animation:none!important}}
+
+/* Remove artificial angular curtain shapes; restore uninterrupted velvet folds */
+.stage-curtains .wing,.stage-curtains .swag{display:none!important}
+.stage-curtains .backdrop{background:
+linear-gradient(90deg,rgba(5,0,5,.52),transparent 18%,transparent 82%,rgba(5,0,5,.52)),
+radial-gradient(ellipse 85% 42% at 50% 0%,rgba(120,25,51,.20),transparent 85%),
+repeating-linear-gradient(90deg,#11040b 0%,#250613 3%,#58152c 7%,#8c2c49 9%,#64172f 12%,#260712 17%,#10030a 20%,#350b1c 25%,#791e39 29%,#3d0c20 34%,#0e0309 39%);
+background-size:100% 100%,100% 100%,clamp(300px,75vw,800px) 100%}
+.stage-curtains .spotlight{background:linear-gradient(180deg,rgba(9,2,8,.12),rgba(9,2,8,.07) 30%,rgba(4,0,4,.60) 100%)!important}
+
+/* Stage-inspired responsive velvet asset; keep the original touch-first menu */
+body{background:#16040d}
+body::before{background:linear-gradient(180deg,rgba(16,2,9,.12),rgba(9,1,6,.57)),url("preview-royal/assets/velvet-curtain.svg") center top / cover no-repeat!important;filter:none!important}
+body::after{background:linear-gradient(90deg,rgba(3,0,3,.46),transparent 20%,transparent 80%,rgba(3,0,3,.46)),linear-gradient(180deg,transparent 20%,rgba(6,0,5,.58))!important;box-shadow:none!important}
+.stage-curtains{display:none!important}
+.stage-light{display:none!important}
+.hero::before{display:none!important}
+.ambient::before{background:none!important}
+.brand-art{animation:emblem-entrance 1.2s ease-out both!important}
+@media(max-width:600px){body::before{background-position:center top!important;background-size:auto 100%!important}.wrap{width:min(calc(100% - 28px),440px)}.btn{min-height:72px}.social .btn{min-height:56px}}
+
+/* Approved mobile reference: luminous gold-rimmed velvet navigation */
+main{margin-top:35px}
+.btn{min-height:76px;border-radius:15px;border:1.5px solid #cf9c43;background:linear-gradient(180deg,rgba(100,8,31,.97) 0%,rgba(71,5,23,.98) 48%,rgba(39,3,15,.99) 100%);box-shadow:inset 0 1px 0 rgba(255,223,145,.28),inset 0 -1px 0 rgba(170,88,29,.3),0 8px 23px rgba(0,0,0,.28);position:relative;overflow:visible;gap:15px}
+.btn::after{content:"";position:absolute;pointer-events:none;top:-2px;left:30%;width:40%;height:3px;background:linear-gradient(90deg,transparent,#ffcd6d 45%,#fff3c6 50%,#ffcd6d 55%,transparent);filter:blur(2px);opacity:.8}
+.btn .ic{border:none;background:none;border-radius:0;color:#e9b85d;width:40px;font-size:23px}
+.btn .tx strong{font:600 17px/1.25 Cinzel,serif;letter-spacing:.045em;color:#f3d89a}
+.btn .tx small{color:#d4bca6}
+.btn.primary{background:linear-gradient(180deg,#7c102e,#430719);border-color:#e3b45d}
+.count-item{background:linear-gradient(160deg,#4d071d,#270511);border:1px solid #c89b4e;box-shadow:inset 0 1px 0 rgba(250,202,111,.17),0 8px 19px rgba(0,0,0,.25);position:relative}
+.count-item b{color:#f0c77b}
+.section-label{color:#e8c17a}
+.tagline{color:#f5d58b}
+@media(max-width:600px){.wrap{width:min(calc(100% - 32px),440px)}.brand-art{width:min(83%,350px)}.btn{min-height:79px;padding:13px 17px}.btn .tx strong{font-size:16px}.count-item b{font-size:clamp(21px,7vw,31px)}}
+
+/* Restore original practical navigation styling and icons */
+.btn,.btn.primary{min-height:70px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(110deg,rgba(73,15,32,.94),rgba(31,8,18,.97));box-shadow:inset 0 1px 0 rgba(244,190,132,.10),0 9px 22px rgba(5,0,5,.25);gap:13px;padding:12px 14px}
+.btn.primary{background:linear-gradient(110deg,#762031,#50131f);border-color:rgba(229,199,134,.72)}
+.btn::after{display:none!important}
+.btn .ic{flex:none;width:40px;height:40px;border:1px solid rgba(201,161,90,.45);border-radius:50%;display:grid;place-items:center;color:var(--gold-bright);font-size:17px;background:rgba(201,161,90,.07)}
+.btn .tx strong{display:block;font:700 15px/1.3 Lato,system-ui,sans-serif;letter-spacing:normal;color:var(--cream)}
+.btn .tx small{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.35}
+.btn .arr{color:var(--gold-bright);font-size:23px}
+.btn.off{opacity:.62}
+@media(max-width:600px){.btn{min-height:72px;padding:12px 13px}.btn .tx strong{font-size:15px}}
+
+/* Screenshot-matched deep burgundy palette, original circular symbols and card layout */
+:root{--bg:#10040b;--bg-soft:#190710;--panel:#240913;--panel-hi:#34101e;--cream:#f4e7e1;--muted:#c4a9ad;--gold:#c49a56;--gold-bright:#dfbc83;--gold-dim:#76512e;--wine:#65172f;--wine-hi:#7a213a;--line:rgba(195,145,77,.65)}
+body{background:#10040b!important}
+body::before{background:linear-gradient(180deg,rgba(13,2,9,.3),rgba(8,1,6,.7)),url("preview-royal/assets/velvet-curtain.svg") center top / cover no-repeat!important}
+body::after{background:linear-gradient(90deg,rgba(4,0,4,.48),transparent 18%,transparent 82%,rgba(4,0,4,.48)),linear-gradient(180deg,transparent 15%,rgba(5,0,5,.64))!important}
+.btn,.btn.primary{border:1px solid rgba(193,143,73,.8)!important;border-radius:18px!important;background:linear-gradient(115deg,#661a33 0%,#3b0d21 46%,#1c0713 100%)!important;box-shadow:inset 0 1px 0 rgba(239,189,130,.1),0 10px 24px rgba(0,0,0,.28)!important;min-height:76px!important;padding:14px 20px!important;gap:18px!important}
+.btn.primary{background:linear-gradient(115deg,#7a213b 0%,#52152b 50%,#290b1b 100%)!important}
+.btn::after{display:none!important}
+.btn .ic{width:59px!important;height:59px!important;flex:0 0 59px!important;border:1px solid #b8894e!important;border-radius:50%!important;background:radial-gradient(circle at 35% 20%,rgba(130,46,65,.4),rgba(39,8,21,.65))!important;color:#e4bf83!important;font:400 25px/1 Lato,sans-serif!important;display:grid!important;place-items:center!important}
+.btn .tx strong{font:700 20px/1.3 Lato,system-ui,sans-serif!important;letter-spacing:-.015em!important;color:#f4e7e1!important}
+.btn .tx small{font:400 15px/1.35 Lato,system-ui,sans-serif!important;color:#c5aab0!important;margin-top:4px!important}
+.soon{font-size:12px!important;border:1px solid rgba(184,134,65,.65)!important;color:#d5a65b!important;padding:6px 13px!important}
+.hotel{background:linear-gradient(130deg,rgba(51,11,27,.94),rgba(24,5,15,.97))!important;border-color:rgba(193,143,73,.7)!important;border-radius:18px!important;padding:22px!important}
+.hotel h3{font-size:21px!important}
+.hotel ul{font-size:16px!important}
+.code{font-size:14px!important}
+@media(max-width:600px){.btn,.btn.primary{min-height:72px!important;padding:12px 12px!important;gap:11px!important;border-radius:15px!important}.btn .ic{width:43px!important;height:43px!important;flex-basis:43px!important;font-size:20px!important}.btn .tx strong{font-size:16px!important}.btn .tx small{font-size:12px!important}.soon{font-size:9px!important;padding:4px 7px!important}.hotel{padding:15px!important}.hotel h3{font-size:17px!important}.hotel ul{font-size:13px!important}}
+
+/* Approved burgundy theatre framing, while keeping live website controls */
+body::before{background:linear-gradient(180deg,rgba(12,2,8,.04),rgba(7,1,5,.48)),url("preview-royal/assets/curtain-stage-2027.svg") center top / 100% 100% no-repeat!important}
+body::after{background:linear-gradient(90deg,rgba(5,0,5,.10),transparent 20%,transparent 80%,rgba(5,0,5,.10))!important}
+.stage-curtains,.stage-light{display:none!important}
+.ambient{opacity:.6}
+@media(max-width:600px){body::before{background-size:100% 100%!important}.wrap{width:min(calc(100% - 28px),440px)}}
+
+/* Real photographed velvet folds — darkened to match approved burgundy palette */
+body{background:#0c0209!important}
+body::before{background:
+linear-gradient(90deg,rgba(17,2,12,.58),rgba(38,5,22,.32) 43%,rgba(14,2,10,.67)),
+linear-gradient(180deg,rgba(20,2,13,.22),rgba(9,1,7,.64)),
+url("https://images.unsplash.com/photo-1775250869743-d08c72844f6e?auto=format&fit=crop&w=1600&q=85") center top / cover no-repeat!important;
+filter:saturate(.65) hue-rotate(342deg) brightness(.82)!important}
+body::after{background:linear-gradient(180deg,transparent 20%,rgba(7,1,6,.54))!important}
+@media(max-width:600px){body::before{background-position:center top!important;background-size:cover!important}}
+
+/* Make photographic velvet folds visible without brightening the menu */
+body::before{
+ background:
+ linear-gradient(90deg,rgba(12,1,8,.20),rgba(25,2,14,.07) 48%,rgba(12,1,8,.25)),
+ linear-gradient(180deg,rgba(14,1,9,.04),rgba(9,1,7,.26)),
+ url("https://images.unsplash.com/photo-1775250869743-d08c72844f6e?auto=format&fit=crop&w=1600&q=85") center top / cover no-repeat!important;
+ filter:saturate(.85) hue-rotate(342deg) brightness(1.02) contrast(1.17)!important;
+}
+body::after{background:linear-gradient(180deg,transparent 35%,rgba(7,1,6,.24))!important}
 </style>
 </head>
 <body>
+<div class="stage-curtains" aria-hidden="true"><div class="backdrop"></div><div class="wing left"></div><div class="wing right"></div><div class="swag left"></div><div class="swag right"></div><div class="spotlight"></div></div>
+<svg class="velvet-texture" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<filter id="velvet-grain" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency=".42 .82" numOctaves="3" seed="17" stitchTiles="stitch"/>
+<feColorMatrix type="saturate" values="0"/>
+</filter>
+<rect width="100%" height="100%" filter="url(#velvet-grain)" opacity=".7"/>
+</svg><div class="stage-light" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"><i style="--x:8%;--s:2px;--d:19s;--delay:-2s;--dx:42px"></i><i style="--x:17%;--s:3px;--d:25s;--delay:-14s;--dx:-34px"></i><i style="--x:27%;--s:2px;--d:22s;--delay:-7s;--dx:50px"></i><i style="--x:37%;--s:2px;--d:28s;--delay:-19s;--dx:-25px"></i><i style="--x:49%;--s:3px;--d:24s;--delay:-11s;--dx:45px"></i><i style="--x:60%;--s:2px;--d:20s;--delay:-4s;--dx:-48px"></i><i style="--x:72%;--s:2px;--d:27s;--delay:-21s;--dx:31px"></i><i style="--x:84%;--s:3px;--d:23s;--delay:-16s;--dx:-42px"></i><i style="--x:94%;--s:2px;--d:26s;--delay:-8s;--dx:30px"></i><i style="--x:43%;--s:1px;--d:30s;--delay:-23s;--dx:-20px"></i></div>
 <div class="wrap">
-  <nav class="lang" aria-label="Language">
-    <button data-l="en">EN</button><button data-l="de">DE</button><button data-l="cs">CZ</button>
-  </nav>
-
-  <header>
-    <svg class="crown" viewBox="0 0 64 44" aria-hidden="true">
-      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d98b"/><stop offset="1" stop-color="#9c7425"/></linearGradient></defs>
-      <path d="M4 14l14 12L32 4l14 22 14-12-6 26H10z" fill="url(#g)" stroke="#f3d98b" stroke-width="1"/>
-      <circle cx="32" cy="4" r="3.5" fill="#a01d33" stroke="#f3d98b"/><circle cx="4" cy="14" r="3" fill="#f3d98b"/><circle cx="60" cy="14" r="3" fill="#f3d98b"/>
-      <rect x="10" y="36" width="44" height="6" rx="1" fill="url(#g)"/><circle cx="32" cy="30" r="3" fill="#a01d33"/>
-    </svg>
-    <h1>Gold Worlds<span class="yr">2027</span></h1>
-    <p class="sub" data-t="sub"></p>
-    <div class="ribbon" data-t="dates"></div>
-    <p class="place">Schwechat · Vienna</p>
-    <div class="count" id="count" aria-live="off"></div>
+<header class="hero">
+    <img class="brand-art" src="preview-royal/assets/gold-worlds-2027-logo-transparent.png" alt="Gold Worlds 2027 – official event emblem"
+      onerror="this.hidden=true;document.querySelector('.brand-fallback').hidden=false">
+    <div class="brand-fallback" hidden>
+      <p class="eyebrow">Gold Line Dance presents</p>
+      <h1>GOLD WORLDS</h1><p class="year">2027</p>
+      <p class="place">Schwechat · Vienna</p>
+      <p class="date" data-t="dates"></p>
+    </div>
   </header>
 
+  <section class="countdown" aria-label="Countdown">
+    <div class="section-label" data-t="countdown"></div>
+    <div class="count" id="count" aria-live="off"></div>
+    <p class="tagline" data-t="tagline" style="text-align:center;width:100%"></p>
+  </section>
+
   <main>
+    <div class="section-label group-label" data-t="explore"></div>
     <div id="main-links"></div>
 
-    <div class="divider" data-t="stay"></div>
+    <div class="section-label group-label" data-t="stay"></div>
     <div id="hotels"></div>
     <div id="travel-links"></div>
 
-    <div class="divider" data-t="more"></div>
+    <div class="section-label group-label" data-t="more"></div>
     <div id="more-links"></div>
     <div class="social" id="social"></div>
   </main>
 
   <footer>
-    <p class="orn">✦ ✦ ✦</p>
-    <p>Gold Worlds 2027 · Line Dance World Championship</p>
+    <p class="brandline">Gold Worlds 2027</p>
+    <p>Line Dance World Championship · Schwechat / Vienna</p>
     <p data-t="footer"></p>
-  </footer>
+  <p style="font-size:10px;opacity:.55"><a href="https://unsplash.com/photos/red-velvet-curtains-with-a-dark-background-W1K7FoBMMjE" target="_blank" rel="noopener" style="color:inherit">Curtain photograph: Vanessa Zhu / Unsplash</a></p></footer>
 </div>
 
 <script>
 const T = {
-  en:{sub:"Line Dance World Championship",dates:"2 – 5 December 2027",days:"days",hours:"hours",mins:"min",
+  en:{sub:"Line Dance World Championship",dates:"2 – 5 December 2027",days:"days",hours:"hours",mins:"minutes",secs:"seconds",
+      countdown:"The Grand Countdown",tagline:"Let the grand celebration begin.",explore:"Explore the Event",
       stay:"Stay & Travel",more:"More",soon:"Coming soon",code:"Booking code",copy:"Copy",copied:"Copied ✓",book:"Book now",
       airport:"from Vienna Airport",venue:"to the venue",breakfast:"Breakfast included",
       website:["Official information","Schedule, rules & news"],registration:["Registration","Dancers & tickets"],
-      shuttle:["Shuttle hotel ↔ venue","Available for booking"],tour:["Worlds Sightseeing Tour","Vienna · 29 Nov – 1 Dec 2027"],
+      shuttle:["Hotel ↔ venue shuttle","Transport information"],tour:["Worlds Sightseeing Tour","Discover Vienna with us"],
       song:["Official song","Listen & learn the dance"],email:["Contact us","Questions? Write to the organisers"],
       footer:"See you on the dance floor!"},
-  de:{sub:"Line Dance Weltmeisterschaft",dates:"2. – 5. Dezember 2027",days:"Tage",hours:"Std.",mins:"Min.",
+  de:{sub:"Line Dance Weltmeisterschaft",dates:"2. – 5. Dezember 2027",days:"Tage",hours:"Std.",mins:"Min.",secs:"Sek.",
+      countdown:"Der große Countdown",tagline:"Das große Fest kann beginnen.",explore:"Entdecke die Veranstaltung",
       stay:"Hotels & Anreise",more:"Mehr",soon:"Demnächst",code:"Buchungscode",copy:"Kopieren",copied:"Kopiert ✓",book:"Jetzt buchen",
-      airport:"vom Flughafen Wien",venue:"zum Veranstaltungsort",breakfast:"Inklusive Frühstück",
+      airport:"vom Flughafen Wien",venue:"zum Veranstaltungsort",breakfast:"Frühstück inklusive",
       website:["Offizielle Informationen","Zeitplan, Regeln & News"],registration:["Anmeldung","Tänzer & Tickets"],
-      shuttle:["Shuttle Hotel ↔ Halle","Buchbar"],tour:["Worlds Sightseeing Tour","Wien · 29.11. – 1.12.2027"],
+      shuttle:["Shuttle Hotel ↔ Halle","Transportinformationen"],tour:["Worlds Sightseeing Tour","Wien mit uns entdecken"],
       song:["Offizieller Song","Anhören & Tanz lernen"],email:["Kontakt","Fragen? Schreib den Veranstaltern"],
       footer:"Wir sehen uns auf der Tanzfläche!"},
-  cs:{sub:"Mistrovství světa v line dance",dates:"2. – 5. prosince 2027",days:"dní",hours:"hod.",mins:"min.",
+  cs:{sub:"Mistrovství světa v line dance",dates:"2. – 5. prosince 2027",days:"dní",hours:"hod.",mins:"min.",secs:"sek.",
+      countdown:"Odpočet do zahájení",tagline:"Oslava tance může začít.",explore:"Prozkoumejte událost",
       stay:"Ubytování a doprava",more:"Další",soon:"Již brzy",code:"Rezervační kód",copy:"Kopírovat",copied:"Zkopírováno ✓",book:"Rezervovat",
       airport:"od letiště Vídeň",venue:"na místo konání",breakfast:"Snídaně v ceně",
       website:["Oficiální informace","Program, pravidla a novinky"],registration:["Registrace","Tanečníci a vstupenky"],
-      shuttle:["Kyvadlová doprava hotel ↔ hala","Možnost rezervace"],tour:["Worlds Sightseeing Tour","Vídeň · 29. 11. – 1. 12. 2027"],
+      shuttle:["Kyvadlová doprava hotel ↔ hala","Informace o dopravě"],tour:["Worlds Sightseeing Tour","Poznejte s námi Vídeň"],
       song:["Oficiální song","Poslechni si a nauč se tanec"],email:["Kontakt","Máte dotaz? Napište pořadatelům"],
       footer:"Uvidíme se na parketu!"}
 };
 const HOTELS = [
   {key:"heinhotel",name:"HEINhotel Vienna Airport",airport:"4 km",venue:"3 km"},
-  {key:"reinisch",name:"Das Reinisch Vienna Airport",airport:"4 km",venue:"3,2 km"}
+  {key:"reinisch",name:"Das Reinisch Vienna Airport",airport:"4 km",venue:"3.2 km"}
 ];
 const EVENT = new Date("2027-12-02T09:00:00+01:00");
-
-let lang = "en";
-try{ lang = localStorage.getItem("gw-lang") || (navigator.language||"").slice(0,2); }catch(e){}
-if(!T[lang]) lang = (navigator.language||"").startsWith("cs") ? "cs" : "en";
-
-const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function href(k){ const v = LINKS[k]; if(!v) return ""; return k==="email" ? "mailto:"+v : v; }
-
-function btn(k, icon, cls=""){
-  const t = T[lang], [title, sub] = t[k], h = href(k);
-  const inner = `<span class="ic" aria-hidden="true">${icon}</span><span class="tx"><strong>${esc(title)}</strong><small>${esc(sub)}</small></span>`;
+const lang = "en";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function href(k){const v=LINKS[k];if(!v)return"";return k==="email"?"mailto:"+v:v}
+function btn(k,icon,cls=""){
+  const t=T[lang],[title,sub]=t[k],h=href(k);
+  const inner=`<span class="ic" aria-hidden="true">${icon}</span><span class="tx"><strong>${esc(title)}</strong><small>${esc(sub)}</small></span>`;
   return h
-    ? `<a class="btn ${cls}" href="${esc(h)}" ${h.startsWith("http")?'target="_blank" rel="noopener"':""}>${inner}<span class="arr">›</span></a>`
+    ? `<a class="btn ${cls}" href="${esc(h)}" ${h.startsWith("http")?'target="_blank" rel="noopener"':""}>${inner}<span class="arr" aria-hidden="true">›</span></a>`
     : `<div class="btn off ${cls}" aria-disabled="true">${inner}<span class="soon">${esc(t.soon)}</span></div>`;
 }
-function socialBtn(k, label, icon){
-  const h = href(k);
-  return h ? `<a class="btn" href="${esc(h)}" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></a>`
-           : `<div class="btn off"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></div>`;
+function socialBtn(k,label,icon){
+  const h=href(k);
+  return h?`<a class="btn" href="${esc(h)}" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></a>`
+    :`<div class="btn off"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></div>`;
 }
-
 function render(){
-  const t = T[lang];
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-t]").forEach(el => el.textContent = t[el.dataset.t]);
-  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.l===lang));
+  const t=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t[el.dataset.t]);
 
-  document.getElementById("main-links").innerHTML = btn("registration","✎","primary") + btn("website","ℹ");
-  document.getElementById("hotels").innerHTML = HOTELS.map(h => {
-    const link = href(h.key);
-    return `<div class="hotel"><h3>${esc(h.name)}</h3>
+  document.getElementById("main-links").innerHTML=btn("registration","✦","primary")+btn("website","i");
+  document.getElementById("hotels").innerHTML=HOTELS.map(h=>{
+    const link=href(h.key);
+    return `<section class="hotel"><h3>${esc(h.name)}</h3>
       <ul><li>${h.airport} ${esc(t.airport)}</li><li>${h.venue} ${esc(t.venue)}</li><li>${esc(t.breakfast)}</li></ul>
       <div class="code"><span>${esc(t.code)}: <b>${esc(CODES[h.key])}</b></span><button data-copy="${esc(CODES[h.key])}">${esc(t.copy)}</button></div>
-      ${link ? `<a class="btn primary" href="${esc(link)}" ${link.startsWith("http")?'target="_blank" rel="noopener"':""}><span class="ic">🛏</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="arr">›</span></a>`
-             : `<div class="btn off"><span class="ic">🛏</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="soon">${esc(t.soon)}</span></div>`}
-    </div>`;
+      ${link?`<a class="btn primary" href="${esc(link)}" ${link.startsWith("http")?'target="_blank" rel="noopener"':""}><span class="ic" aria-hidden="true">⌂</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="arr">›</span></a>`
+      :`<div class="btn off"><span class="ic" aria-hidden="true">⌂</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="soon">${esc(t.soon)}</span></div>`}</section>`;
   }).join("");
-  document.getElementById("travel-links").innerHTML = btn("shuttle","🚌") + btn("tour","🎡");
-  document.getElementById("more-links").innerHTML = btn("song","♫") + btn("email","✉");
-  document.getElementById("social").innerHTML = socialBtn("facebook","Facebook","f") + socialBtn("instagram","Instagram","◎");
+  document.getElementById("travel-links").innerHTML=btn("shuttle","↔")+btn("tour","✧");
+  document.getElementById("more-links").innerHTML=btn("song","♫")+btn("email","✉");
+  document.getElementById("social").innerHTML=socialBtn("facebook","Facebook","f")+socialBtn("instagram","Instagram","◎");
   tick();
 }
-
 function tick(){
-  const t = T[lang], ms = EVENT - Date.now(), el = document.getElementById("count");
-  if(ms <= 0){ el.innerHTML = ""; return; }
-  const d = Math.floor(ms/864e5), h = Math.floor(ms/36e5)%24, m = Math.floor(ms/6e4)%60;
-  el.innerHTML = [[d,t.days],[h,t.hours],[m,t.mins]].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
+  const t=T[lang],ms=EVENT-Date.now(),el=document.getElementById("count");
+  if(ms<=0){el.innerHTML="";return}
+  const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+  el.innerHTML=[[d,t.days],[h,t.hours],[m,t.mins],[s,t.secs]].map(([n,l])=>`<div class="count-item"><b>${String(n).padStart(2,"0")}</b><span>${l}</span></div>`).join("");
 }
-
-document.addEventListener("click", e => {
-  const l = e.target.closest(".lang button");
-  if(l){ lang = l.dataset.l; try{localStorage.setItem("gw-lang",lang)}catch(_){} render(); return; }
-  const c = e.target.closest("[data-copy]");
-  if(c){ navigator.clipboard?.writeText(c.dataset.copy).then(()=>{ c.textContent = T[lang].copied; setTimeout(()=>c.textContent=T[lang].copy,1600); }); }
+document.addEventListener("click",e=>{
+const c=e.target.closest("[data-copy]");
+  if(c&&navigator.clipboard){navigator.clipboard.writeText(c.dataset.copy).then(()=>{c.textContent=T[lang].copied;setTimeout(()=>c.textContent=T[lang].copy,1600)}).catch(()=>{});}
 });
-render();
-setInterval(tick, 30000);
+render();setInterval(tick,1000);
+if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window){
+  const items=document.querySelectorAll("main .section-label,main .btn,main .hotel,footer");
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}});
+  },{threshold:.09,rootMargin:"0px 0px -20px 0px"});
+  items.forEach((item,i)=>{item.classList.add("reveal");item.style.setProperty("--reveal-delay",((i%3)*95)+"ms");observer.observe(item)});
+  document.body.classList.add("reveal-ready");
+}
 </script>
 </body>
 </html>
