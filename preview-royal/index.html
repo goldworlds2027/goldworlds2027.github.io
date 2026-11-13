@@ -212,6 +212,15 @@ box-shadow:inset 0 0 80px #080108,0 0 45px #080108;filter:contrast(1.18)}
 }
 @media(max-width:360px){.wrap{width:calc(100% - 22px)}.stage-curtains .wing{opacity:.48}.btn{gap:9px}.soon{font-size:8px;padding:3px 5px}}
 @media(prefers-reduced-motion:reduce){.brand-art{animation:none!important}}
+
+/* Remove artificial angular curtain shapes; restore uninterrupted velvet folds */
+.stage-curtains .wing,.stage-curtains .swag{display:none!important}
+.stage-curtains .backdrop{background:
+linear-gradient(90deg,rgba(5,0,5,.52),transparent 18%,transparent 82%,rgba(5,0,5,.52)),
+radial-gradient(ellipse 85% 42% at 50% 0%,rgba(120,25,51,.20),transparent 85%),
+repeating-linear-gradient(90deg,#11040b 0%,#250613 3%,#58152c 7%,#8c2c49 9%,#64172f 12%,#260712 17%,#10030a 20%,#350b1c 25%,#791e39 29%,#3d0c20 34%,#0e0309 39%);
+background-size:100% 100%,100% 100%,clamp(300px,75vw,800px) 100%}
+.stage-curtains .spotlight{background:linear-gradient(180deg,rgba(9,2,8,.12),rgba(9,2,8,.07) 30%,rgba(4,0,4,.60) 100%)!important}
 </style>
 </head>
 <body>
