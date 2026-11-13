@@ -3,240 +3,225 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b0c">
 <title>Gold Worlds 2027</title>
 <meta name="description" content="Line Dance World Championship – Gold Worlds 2027, Schwechat / Vienna, 2–5 December 2027">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Great+Vibes&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
-/* =====================================================================
-   ODKAZY – tady se upravuje obsah. Prázdný odkaz "" = tlačítko ukáže
-   "Již brzy / Coming soon" a nedá se na něj kliknout.
-   ===================================================================== */
+/* Event links – an empty value displays a disabled “Coming soon” item. */
 const LINKS = {
-  website:      "",   // oficiální web akce
-  registration: "",   // registrace soutěžících / vstupenky
-  heinhotel:    "",   // rezervace HEINhotel (odkaz nebo mailto:adresa@...)
-  reinisch:     "",   // rezervace Das Reinisch
-  shuttle:      "",   // rezervace kyvadlové dopravy
-  tour:         "",   // Worlds Sightseeing Tour
-  song:         "",   // oficiální song (YouTube / Spotify)
-  facebook:     "",
-  instagram:    "",
-  email:        ""    // kontaktní e-mail pořadatele (jen adresa, bez mailto:)
+  website: "", registration: "", heinhotel: "", reinisch: "",
+  shuttle: "", tour: "", song: "", facebook: "", instagram: "", email: ""
 };
 const CODES = { heinhotel: "Linedance WM", reinisch: "Linedance" };
 </script>
 <style>
 :root{
-  --bg:#0b0907; --panel:#16110d; --cream:#f6ecd9; --muted:#c9b99a;
-  --gold:#d4a84b; --gold-hi:#f3d98b; --gold-lo:#9c7425;
-  --wine:#7d1426; --wine-hi:#a01d33;
+  color-scheme:dark;
+  --bg:#100b0c; --bg-soft:#181012; --panel:#1b1214; --panel-hi:#241619;
+  --cream:#f3eadb; --muted:#b9aa98; --gold:#c9a15a; --gold-bright:#e5c786;
+  --gold-dim:#765a32; --wine:#751b2b; --wine-hi:#8e2637;
+  --line:rgba(201,161,90,.48); --shadow:0 18px 50px rgba(0,0,0,.28);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg)}
+html{background:var(--bg);scroll-behavior:smooth}
 body{
-  min-height:100vh;color:var(--cream);font:16px/1.5 Lato,system-ui,sans-serif;
+  min-height:100vh;color:var(--cream);font:16px/1.55 Lato,system-ui,sans-serif;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(125,20,38,.35),transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 100%,rgba(212,168,75,.12),transparent 70%),
+    radial-gradient(ellipse 68% 28% at 50% 13%,rgba(104,14,38,.54),transparent 80%),
+    radial-gradient(ellipse 48% 25% at 50% 66%,rgba(100,16,38,.16),transparent 78%),
     var(--bg);
 }
-.wrap{max-width:520px;margin:0 auto;padding:20px 16px 48px}
-
-/* jazyky */
-.lang{display:flex;justify-content:flex-end;gap:6px}
-.lang button{
-  background:none;border:1px solid var(--gold-lo);color:var(--muted);
-  font:700 12px Lato,sans-serif;letter-spacing:.08em;padding:5px 9px;border-radius:999px;cursor:pointer
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(100% - 28px,520px);margin:0 auto;padding:18px 0 36px}
+.hero{text-align:center;padding:2px 0 0}
+.brand-art{
+  display:block;width:min(78%,345px);height:auto;max-height:490px;object-fit:contain;
+  margin:0 auto 12px;filter:drop-shadow(0 14px 28px rgba(0,0,0,.18));
 }
-.lang button[aria-pressed="true"]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-
-/* hlavička */
-header{text-align:center;padding:12px 0 8px}
-.crown{width:64px;height:auto;display:block;margin:0 auto 6px;filter:drop-shadow(0 2px 6px rgba(212,168,75,.4))}
-h1{
-  font:800 clamp(40px,12vw,58px)/1 Cinzel,serif;letter-spacing:.02em;
-  background:linear-gradient(180deg,var(--gold-hi) 0%,var(--gold) 45%,var(--gold-lo) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent
+.brand-fallback{padding:18px 0 4px}
+.brand-fallback .eyebrow{font:600 10px Cinzel,serif;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+.brand-fallback h1{
+  margin:8px 0 2px;font:700 clamp(36px,10vw,52px)/1.08 Cinzel,serif;letter-spacing:.015em;
+  color:var(--gold-bright);
 }
-h1 .yr{display:block;font-family:"Great Vibes",cursive;font-weight:400;font-size:.9em;margin-top:2px}
-.sub{font:600 13px Cinzel,serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
-.ribbon{
-  display:inline-block;margin-top:14px;padding:8px 22px;background:linear-gradient(180deg,var(--wine-hi),var(--wine));
-  border:1px solid var(--gold);border-radius:4px;font:700 17px Cinzel,serif;color:var(--gold-hi);letter-spacing:.05em
+.brand-fallback .year{font:400 46px/1.2 "Great Vibes",cursive;color:var(--gold)}
+.brand-fallback .place{font:400 28px "Great Vibes",cursive;color:var(--cream);margin-top:4px}
+.brand-fallback .date{display:inline-block;margin-top:14px;padding:7px 20px;border:1px solid var(--gold-dim);border-radius:3px;color:var(--gold-bright);font:600 13px Cinzel,serif;letter-spacing:.08em}
+.countdown{margin:15px 0 0}
+.section-label{
+  display:flex;align-items:center;gap:12px;justify-content:center;margin:0 0 13px;
+  color:var(--gold);font:600 11px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;
 }
-.place{margin-top:10px;font-family:"Great Vibes",cursive;font-size:28px;color:var(--gold)}
-
-/* odpočet */
-.count{display:flex;justify-content:center;gap:10px;margin:18px 0 6px}
-.count div{min-width:64px;padding:8px 4px;border:1px solid var(--gold-lo);border-radius:8px;background:var(--panel);text-align:center}
-.count b{display:block;font:800 22px Cinzel,serif;color:var(--gold-hi)}
-.count span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-
-.divider{display:flex;align-items:center;gap:10px;margin:26px 0 12px;color:var(--gold);font:600 13px Cinzel,serif;letter-spacing:.16em;text-transform:uppercase}
-.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo),transparent)}
-
-/* tlačítka */
+.section-label:before,.section-label:after{content:"";height:1px;flex:1;max-width:105px;background:linear-gradient(90deg,transparent,var(--gold-dim))}
+.section-label:after{transform:scaleX(-1)}
+.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.count-item{
+  min-width:0;text-align:center;padding:10px 4px 8px;border:1px solid var(--line);border-radius:9px;
+  background:linear-gradient(155deg,rgba(36,22,25,.92),rgba(19,13,14,.96));
+}
+.count-item b{display:block;color:var(--gold-bright);font:600 clamp(23px,7vw,31px)/1.25 Cinzel,serif;font-variant-numeric:tabular-nums}
+.count-item span{display:block;margin-top:2px;color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.tagline{margin:17px 0 0;color:var(--gold-bright);font:400 clamp(23px,6vw,29px)/1.3 "Great Vibes",cursive}
+main{margin-top:25px}
+.group-label{margin:25px 0 12px}
 .btn{
-  display:flex;align-items:center;gap:14px;width:100%;margin-bottom:10px;padding:14px 16px;
-  background:linear-gradient(180deg,#1d1611,var(--panel));border:1px solid var(--gold-lo);border-radius:12px;
-  color:var(--cream);text-decoration:none;transition:border-color .15s,transform .15s
+  display:flex;align-items:center;gap:13px;width:100%;margin:0 0 9px;padding:12px 14px;
+  min-height:70px;background:linear-gradient(110deg,rgba(35,23,25,.92),rgba(24,16,18,.96));
+  border:1px solid var(--line);border-radius:13px;color:var(--cream);text-decoration:none;
+  transition:border-color .2s ease,background .2s ease,transform .2s ease;
 }
-a.btn:hover,a.btn:focus-visible{border-color:var(--gold-hi);transform:translateY(-1px)}
-.btn.primary{background:linear-gradient(180deg,var(--wine-hi),var(--wine));border-color:var(--gold)}
-.btn .ic{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(212,168,75,.14);color:var(--gold-hi);font-size:19px}
+a.btn:hover,a.btn:focus-visible{border-color:var(--gold-bright);background:var(--panel-hi);transform:translateY(-1px);outline:none}
+.btn.primary{background:linear-gradient(110deg,#762031,#50131f);border-color:rgba(229,199,134,.72)}
+.btn.primary:hover,.btn.primary:focus-visible{background:linear-gradient(110deg,#84263a,#5a1725)}
+.btn .ic{
+  flex:none;width:40px;height:40px;border:1px solid rgba(201,161,90,.45);border-radius:50%;
+  display:grid;place-items:center;color:var(--gold-bright);font-size:17px;background:rgba(201,161,90,.07)
+}
 .btn .tx{flex:1;min-width:0}
-.btn .tx strong{display:block;font-weight:700}
-.btn .tx small{display:block;color:var(--muted);font-size:13px}
-.btn .arr{color:var(--gold);font-size:20px}
-.btn.off{opacity:.5;cursor:default}
+.btn .tx strong{display:block;font-size:15px;font-weight:700;line-height:1.3}
+.btn .tx small{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.35}
+.btn .arr{color:var(--gold-bright);font-size:23px;line-height:1;padding:0 2px}
+.btn.off{opacity:.62;cursor:default}
 .btn.off .arr{display:none}
-.soon{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-lo);border-radius:999px;padding:2px 8px}
-
-/* hotely */
-.hotel{border:1px solid var(--gold-lo);border-radius:12px;background:var(--panel);padding:16px;margin-bottom:12px}
-.hotel h3{font:700 18px Cinzel,serif;color:var(--gold-hi)}
-.hotel ul{list-style:none;margin:8px 0 12px;color:var(--muted);font-size:14px}
-.hotel li::before{content:"✦ ";color:var(--gold)}
-.code{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border:1px dashed var(--gold);border-radius:8px;margin-bottom:10px;font-size:14px}
-.code b{color:var(--gold-hi);letter-spacing:.04em}
-.code button{background:var(--gold);color:var(--bg);border:0;border-radius:6px;padding:6px 10px;font:700 12px Lato,sans-serif;cursor:pointer}
-.hotel .btn{margin:0}
-
-.social{display:flex;gap:10px}
-.social .btn{justify-content:center}
-
-footer{margin-top:32px;text-align:center;color:var(--muted);font-size:13px}
-footer .orn{color:var(--gold);letter-spacing:.4em}
+.soon{flex:none;border:1px solid var(--gold-dim);border-radius:999px;padding:3px 8px;color:var(--gold);font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.hotel{padding:15px;margin:0 0 11px;border:1px solid var(--line);border-radius:13px;background:rgba(27,18,20,.82)}
+.hotel h3{font:600 16px Cinzel,serif;color:var(--gold-bright)}
+.hotel ul{list-style:none;margin:8px 0 12px;color:var(--muted);font-size:13px}
+.hotel li{margin:3px 0}
+.hotel li:before{content:"•";color:var(--gold);margin-right:8px}
+.code{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border:1px dashed var(--gold-dim);border-radius:8px;margin-bottom:10px;font-size:12px;color:var(--muted)}
+.code b{color:var(--gold-bright);letter-spacing:.04em}
+.code button{background:var(--gold);color:#171012;border:0;border-radius:6px;padding:6px 10px;font:700 11px Lato,sans-serif;cursor:pointer}
+.hotel .btn{margin:0;min-height:54px}
+.social{display:flex;gap:9px;margin-top:4px}
+.social .btn{justify-content:center;min-height:54px;padding:9px}
+.social .btn .ic{width:30px;height:30px}
+.social .btn strong{font-size:13px}
+footer{margin-top:28px;padding:18px 8px 0;text-align:center;color:var(--muted);font-size:11px;border-top:1px solid rgba(201,161,90,.2)}
+footer .brandline{font:600 11px Cinzel,serif;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+footer p+p{margin-top:5px}
+@media(min-width:600px){.wrap{padding-top:28px}.brand-art{width:335px}.countdown{margin-top:20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <nav class="lang" aria-label="Language">
-    <button data-l="en">EN</button><button data-l="de">DE</button><button data-l="cs">CZ</button>
-  </nav>
-
-  <header>
-    <svg class="crown" viewBox="0 0 64 44" aria-hidden="true">
-      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d98b"/><stop offset="1" stop-color="#9c7425"/></linearGradient></defs>
-      <path d="M4 14l14 12L32 4l14 22 14-12-6 26H10z" fill="url(#g)" stroke="#f3d98b" stroke-width="1"/>
-      <circle cx="32" cy="4" r="3.5" fill="#a01d33" stroke="#f3d98b"/><circle cx="4" cy="14" r="3" fill="#f3d98b"/><circle cx="60" cy="14" r="3" fill="#f3d98b"/>
-      <rect x="10" y="36" width="44" height="6" rx="1" fill="url(#g)"/><circle cx="32" cy="30" r="3" fill="#a01d33"/>
-    </svg>
-    <h1>Gold Worlds<span class="yr">2027</span></h1>
-    <p class="sub" data-t="sub"></p>
-    <div class="ribbon" data-t="dates"></div>
-    <p class="place">Schwechat · Vienna</p>
-    <div class="count" id="count" aria-live="off"></div>
+<header class="hero">
+    <img class="brand-art" src="assets/gold-worlds-2027-logo-transparent.png" alt="Gold Worlds 2027 – official event emblem"
+      onerror="this.hidden=true;document.querySelector('.brand-fallback').hidden=false">
+    <div class="brand-fallback" hidden>
+      <p class="eyebrow">Gold Line Dance presents</p>
+      <h1>GOLD WORLDS</h1><p class="year">2027</p>
+      <p class="place">Schwechat · Vienna</p>
+      <p class="date" data-t="dates"></p>
+    </div>
   </header>
 
+  <section class="countdown" aria-label="Countdown">
+    <div class="section-label" data-t="countdown"></div>
+    <div class="count" id="count" aria-live="off"></div>
+    <p class="tagline" data-t="tagline"></p>
+  </section>
+
   <main>
+    <div class="section-label group-label" data-t="explore"></div>
     <div id="main-links"></div>
 
-    <div class="divider" data-t="stay"></div>
+    <div class="section-label group-label" data-t="stay"></div>
     <div id="hotels"></div>
     <div id="travel-links"></div>
 
-    <div class="divider" data-t="more"></div>
+    <div class="section-label group-label" data-t="more"></div>
     <div id="more-links"></div>
     <div class="social" id="social"></div>
   </main>
 
   <footer>
-    <p class="orn">✦ ✦ ✦</p>
-    <p>Gold Worlds 2027 · Line Dance World Championship</p>
+    <p class="brandline">Gold Worlds 2027</p>
+    <p>Line Dance World Championship · Schwechat / Vienna</p>
     <p data-t="footer"></p>
   </footer>
 </div>
 
 <script>
 const T = {
-  en:{sub:"Line Dance World Championship",dates:"2 – 5 December 2027",days:"days",hours:"hours",mins:"min",
+  en:{sub:"Line Dance World Championship",dates:"2 – 5 December 2027",days:"days",hours:"hours",mins:"minutes",secs:"seconds",
+      countdown:"The Grand Countdown",tagline:"Let the grand celebration begin.",explore:"Explore the Event",
       stay:"Stay & Travel",more:"More",soon:"Coming soon",code:"Booking code",copy:"Copy",copied:"Copied ✓",book:"Book now",
       airport:"from Vienna Airport",venue:"to the venue",breakfast:"Breakfast included",
       website:["Official information","Schedule, rules & news"],registration:["Registration","Dancers & tickets"],
-      shuttle:["Shuttle hotel ↔ venue","Available for booking"],tour:["Worlds Sightseeing Tour","Vienna · 29 Nov – 1 Dec 2027"],
+      shuttle:["Hotel ↔ venue shuttle","Transport information"],tour:["Worlds Sightseeing Tour","Discover Vienna with us"],
       song:["Official song","Listen & learn the dance"],email:["Contact us","Questions? Write to the organisers"],
       footer:"See you on the dance floor!"},
-  de:{sub:"Line Dance Weltmeisterschaft",dates:"2. – 5. Dezember 2027",days:"Tage",hours:"Std.",mins:"Min.",
+  de:{sub:"Line Dance Weltmeisterschaft",dates:"2. – 5. Dezember 2027",days:"Tage",hours:"Std.",mins:"Min.",secs:"Sek.",
+      countdown:"Der große Countdown",tagline:"Das große Fest kann beginnen.",explore:"Entdecke die Veranstaltung",
       stay:"Hotels & Anreise",more:"Mehr",soon:"Demnächst",code:"Buchungscode",copy:"Kopieren",copied:"Kopiert ✓",book:"Jetzt buchen",
-      airport:"vom Flughafen Wien",venue:"zum Veranstaltungsort",breakfast:"Inklusive Frühstück",
+      airport:"vom Flughafen Wien",venue:"zum Veranstaltungsort",breakfast:"Frühstück inklusive",
       website:["Offizielle Informationen","Zeitplan, Regeln & News"],registration:["Anmeldung","Tänzer & Tickets"],
-      shuttle:["Shuttle Hotel ↔ Halle","Buchbar"],tour:["Worlds Sightseeing Tour","Wien · 29.11. – 1.12.2027"],
+      shuttle:["Shuttle Hotel ↔ Halle","Transportinformationen"],tour:["Worlds Sightseeing Tour","Wien mit uns entdecken"],
       song:["Offizieller Song","Anhören & Tanz lernen"],email:["Kontakt","Fragen? Schreib den Veranstaltern"],
       footer:"Wir sehen uns auf der Tanzfläche!"},
-  cs:{sub:"Mistrovství světa v line dance",dates:"2. – 5. prosince 2027",days:"dní",hours:"hod.",mins:"min.",
+  cs:{sub:"Mistrovství světa v line dance",dates:"2. – 5. prosince 2027",days:"dní",hours:"hod.",mins:"min.",secs:"sek.",
+      countdown:"Odpočet do zahájení",tagline:"Oslava tance může začít.",explore:"Prozkoumejte událost",
       stay:"Ubytování a doprava",more:"Další",soon:"Již brzy",code:"Rezervační kód",copy:"Kopírovat",copied:"Zkopírováno ✓",book:"Rezervovat",
       airport:"od letiště Vídeň",venue:"na místo konání",breakfast:"Snídaně v ceně",
       website:["Oficiální informace","Program, pravidla a novinky"],registration:["Registrace","Tanečníci a vstupenky"],
-      shuttle:["Kyvadlová doprava hotel ↔ hala","Možnost rezervace"],tour:["Worlds Sightseeing Tour","Vídeň · 29. 11. – 1. 12. 2027"],
+      shuttle:["Kyvadlová doprava hotel ↔ hala","Informace o dopravě"],tour:["Worlds Sightseeing Tour","Poznejte s námi Vídeň"],
       song:["Oficiální song","Poslechni si a nauč se tanec"],email:["Kontakt","Máte dotaz? Napište pořadatelům"],
       footer:"Uvidíme se na parketu!"}
 };
 const HOTELS = [
   {key:"heinhotel",name:"HEINhotel Vienna Airport",airport:"4 km",venue:"3 km"},
-  {key:"reinisch",name:"Das Reinisch Vienna Airport",airport:"4 km",venue:"3,2 km"}
+  {key:"reinisch",name:"Das Reinisch Vienna Airport",airport:"4 km",venue:"3.2 km"}
 ];
 const EVENT = new Date("2027-12-02T09:00:00+01:00");
-
-let lang = "en";
-try{ lang = localStorage.getItem("gw-lang") || (navigator.language||"").slice(0,2); }catch(e){}
-if(!T[lang]) lang = (navigator.language||"").startsWith("cs") ? "cs" : "en";
-
-const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function href(k){ const v = LINKS[k]; if(!v) return ""; return k==="email" ? "mailto:"+v : v; }
-
-function btn(k, icon, cls=""){
-  const t = T[lang], [title, sub] = t[k], h = href(k);
-  const inner = `<span class="ic" aria-hidden="true">${icon}</span><span class="tx"><strong>${esc(title)}</strong><small>${esc(sub)}</small></span>`;
+const lang = "en";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function href(k){const v=LINKS[k];if(!v)return"";return k==="email"?"mailto:"+v:v}
+function btn(k,icon,cls=""){
+  const t=T[lang],[title,sub]=t[k],h=href(k);
+  const inner=`<span class="ic" aria-hidden="true">${icon}</span><span class="tx"><strong>${esc(title)}</strong><small>${esc(sub)}</small></span>`;
   return h
-    ? `<a class="btn ${cls}" href="${esc(h)}" ${h.startsWith("http")?'target="_blank" rel="noopener"':""}>${inner}<span class="arr">›</span></a>`
+    ? `<a class="btn ${cls}" href="${esc(h)}" ${h.startsWith("http")?'target="_blank" rel="noopener"':""}>${inner}<span class="arr" aria-hidden="true">›</span></a>`
     : `<div class="btn off ${cls}" aria-disabled="true">${inner}<span class="soon">${esc(t.soon)}</span></div>`;
 }
-function socialBtn(k, label, icon){
-  const h = href(k);
-  return h ? `<a class="btn" href="${esc(h)}" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></a>`
-           : `<div class="btn off"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></div>`;
+function socialBtn(k,label,icon){
+  const h=href(k);
+  return h?`<a class="btn" href="${esc(h)}" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></a>`
+    :`<div class="btn off"><span class="ic" aria-hidden="true">${icon}</span><strong>${label}</strong></div>`;
 }
-
 function render(){
-  const t = T[lang];
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-t]").forEach(el => el.textContent = t[el.dataset.t]);
-  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.l===lang));
+  const t=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t[el.dataset.t]);
 
-  document.getElementById("main-links").innerHTML = btn("registration","✎","primary") + btn("website","ℹ");
-  document.getElementById("hotels").innerHTML = HOTELS.map(h => {
-    const link = href(h.key);
-    return `<div class="hotel"><h3>${esc(h.name)}</h3>
+  document.getElementById("main-links").innerHTML=btn("registration","✦","primary")+btn("website","i");
+  document.getElementById("hotels").innerHTML=HOTELS.map(h=>{
+    const link=href(h.key);
+    return `<section class="hotel"><h3>${esc(h.name)}</h3>
       <ul><li>${h.airport} ${esc(t.airport)}</li><li>${h.venue} ${esc(t.venue)}</li><li>${esc(t.breakfast)}</li></ul>
       <div class="code"><span>${esc(t.code)}: <b>${esc(CODES[h.key])}</b></span><button data-copy="${esc(CODES[h.key])}">${esc(t.copy)}</button></div>
-      ${link ? `<a class="btn primary" href="${esc(link)}" ${link.startsWith("http")?'target="_blank" rel="noopener"':""}><span class="ic">🛏</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="arr">›</span></a>`
-             : `<div class="btn off"><span class="ic">🛏</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="soon">${esc(t.soon)}</span></div>`}
-    </div>`;
+      ${link?`<a class="btn primary" href="${esc(link)}" ${link.startsWith("http")?'target="_blank" rel="noopener"':""}><span class="ic" aria-hidden="true">⌂</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="arr">›</span></a>`
+      :`<div class="btn off"><span class="ic" aria-hidden="true">⌂</span><span class="tx"><strong>${esc(t.book)}</strong></span><span class="soon">${esc(t.soon)}</span></div>`}</section>`;
   }).join("");
-  document.getElementById("travel-links").innerHTML = btn("shuttle","🚌") + btn("tour","🎡");
-  document.getElementById("more-links").innerHTML = btn("song","♫") + btn("email","✉");
-  document.getElementById("social").innerHTML = socialBtn("facebook","Facebook","f") + socialBtn("instagram","Instagram","◎");
+  document.getElementById("travel-links").innerHTML=btn("shuttle","↔")+btn("tour","✧");
+  document.getElementById("more-links").innerHTML=btn("song","♫")+btn("email","✉");
+  document.getElementById("social").innerHTML=socialBtn("facebook","Facebook","f")+socialBtn("instagram","Instagram","◎");
   tick();
 }
-
 function tick(){
-  const t = T[lang], ms = EVENT - Date.now(), el = document.getElementById("count");
-  if(ms <= 0){ el.innerHTML = ""; return; }
-  const d = Math.floor(ms/864e5), h = Math.floor(ms/36e5)%24, m = Math.floor(ms/6e4)%60;
-  el.innerHTML = [[d,t.days],[h,t.hours],[m,t.mins]].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
+  const t=T[lang],ms=EVENT-Date.now(),el=document.getElementById("count");
+  if(ms<=0){el.innerHTML="";return}
+  const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+  el.innerHTML=[[d,t.days],[h,t.hours],[m,t.mins],[s,t.secs]].map(([n,l])=>`<div class="count-item"><b>${String(n).padStart(2,"0")}</b><span>${l}</span></div>`).join("");
 }
-
-document.addEventListener("click", e => {
-  const l = e.target.closest(".lang button");
-  if(l){ lang = l.dataset.l; try{localStorage.setItem("gw-lang",lang)}catch(_){} render(); return; }
-  const c = e.target.closest("[data-copy]");
-  if(c){ navigator.clipboard?.writeText(c.dataset.copy).then(()=>{ c.textContent = T[lang].copied; setTimeout(()=>c.textContent=T[lang].copy,1600); }); }
+document.addEventListener("click",e=>{
+const c=e.target.closest("[data-copy]");
+  if(c&&navigator.clipboard){navigator.clipboard.writeText(c.dataset.copy).then(()=>{c.textContent=T[lang].copied;setTimeout(()=>c.textContent=T[lang].copy,1600)}).catch(()=>{});}
 });
-render();
-setInterval(tick, 30000);
+render();setInterval(tick,1000);
 </script>
 </body>
 </html>
