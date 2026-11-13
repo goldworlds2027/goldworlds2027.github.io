@@ -275,6 +275,13 @@ body::after{background:linear-gradient(90deg,rgba(4,0,4,.48),transparent 18%,tra
 .hotel ul{font-size:16px!important}
 .code{font-size:14px!important}
 @media(max-width:600px){.btn,.btn.primary{min-height:72px!important;padding:12px 12px!important;gap:11px!important;border-radius:15px!important}.btn .ic{width:43px!important;height:43px!important;flex-basis:43px!important;font-size:20px!important}.btn .tx strong{font-size:16px!important}.btn .tx small{font-size:12px!important}.soon{font-size:9px!important;padding:4px 7px!important}.hotel{padding:15px!important}.hotel h3{font-size:17px!important}.hotel ul{font-size:13px!important}}
+
+/* Approved burgundy theatre framing, while keeping live website controls */
+body::before{background:linear-gradient(180deg,rgba(12,2,8,.04),rgba(7,1,5,.48)),url("assets/curtain-stage-2027.svg") center top / 100% 100% no-repeat!important}
+body::after{background:linear-gradient(90deg,rgba(5,0,5,.10),transparent 20%,transparent 80%,rgba(5,0,5,.10))!important}
+.stage-curtains,.stage-light{display:none!important}
+.ambient{opacity:.6}
+@media(max-width:600px){body::before{background-size:100% 100%!important}.wrap{width:min(calc(100% - 28px),440px)}}
 </style>
 </head>
 <body>
