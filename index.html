@@ -36,13 +36,6 @@ body{
 }
 button,a{-webkit-tap-highlight-color:transparent}
 .wrap{width:min(100% - 28px,520px);margin:0 auto;padding:18px 0 36px}
-.lang{display:flex;justify-content:flex-end;gap:7px;margin-bottom:8px}
-.lang button{
-  min-width:39px;background:transparent;border:1px solid var(--gold-dim);color:var(--muted);
-  font:700 11px Lato,sans-serif;letter-spacing:.08em;padding:7px 10px;border-radius:999px;cursor:pointer;
-  transition:background .2s ease,color .2s ease,border-color .2s ease;
-}
-.lang button[aria-pressed="true"]{background:var(--gold);color:#171012;border-color:var(--gold)}
 .hero{text-align:center;padding:2px 0 0}
 .brand-art{
   display:block;width:min(66%,280px);height:auto;max-height:390px;object-fit:contain;
@@ -225,9 +218,7 @@ function tick(){
   el.innerHTML=[[d,t.days],[h,t.hours],[m,t.mins],[s,t.secs]].map(([n,l])=>`<div class="count-item"><b>${String(n).padStart(2,"0")}</b><span>${l}</span></div>`).join("");
 }
 document.addEventListener("click",e=>{
-  const l=e.target.closest(".lang button");
-  if(l){lang=l.dataset.l;try{localStorage.setItem("gw-lang",lang)}catch(_){}render();return}
-  const c=e.target.closest("[data-copy]");
+const c=e.target.closest("[data-copy]");
   if(c&&navigator.clipboard){navigator.clipboard.writeText(c.dataset.copy).then(()=>{c.textContent=T[lang].copied;setTimeout(()=>c.textContent=T[lang].copy,1600)}).catch(()=>{});}
 });
 render();setInterval(tick,1000);
