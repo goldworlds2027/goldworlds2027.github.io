@@ -221,6 +221,17 @@ radial-gradient(ellipse 85% 42% at 50% 0%,rgba(120,25,51,.20),transparent 85%),
 repeating-linear-gradient(90deg,#11040b 0%,#250613 3%,#58152c 7%,#8c2c49 9%,#64172f 12%,#260712 17%,#10030a 20%,#350b1c 25%,#791e39 29%,#3d0c20 34%,#0e0309 39%);
 background-size:100% 100%,100% 100%,clamp(300px,75vw,800px) 100%}
 .stage-curtains .spotlight{background:linear-gradient(180deg,rgba(9,2,8,.12),rgba(9,2,8,.07) 30%,rgba(4,0,4,.60) 100%)!important}
+
+/* Stage-inspired responsive velvet asset; keep the original touch-first menu */
+body{background:#16040d}
+body::before{background:linear-gradient(180deg,rgba(16,2,9,.12),rgba(9,1,6,.57)),url("assets/velvet-curtain.svg") center top / cover no-repeat!important;filter:none!important}
+body::after{background:linear-gradient(90deg,rgba(3,0,3,.46),transparent 20%,transparent 80%,rgba(3,0,3,.46)),linear-gradient(180deg,transparent 20%,rgba(6,0,5,.58))!important;box-shadow:none!important}
+.stage-curtains{display:none!important}
+.stage-light{display:none!important}
+.hero::before{display:none!important}
+.ambient::before{background:none!important}
+.brand-art{animation:emblem-entrance 1.2s ease-out both!important}
+@media(max-width:600px){body::before{background-position:center top!important;background-size:auto 100%!important}.wrap{width:min(calc(100% - 28px),440px)}.btn{min-height:72px}.social .btn{min-height:56px}}
 </style>
 </head>
 <body>
