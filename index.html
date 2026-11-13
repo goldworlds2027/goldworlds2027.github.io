@@ -302,9 +302,33 @@ body::before{
  filter:saturate(.85) hue-rotate(342deg) brightness(1.02) contrast(1.17)!important;
 }
 body::after{background:linear-gradient(180deg,transparent 35%,rgba(7,1,6,.24))!important}
+
+/* Curtain on both sides: mirrored copy of the velvet photograph fills the dark right half */
+.curtain-mirror{position:fixed;inset:0;pointer-events:none;z-index:0;
+ background:url("https://images.unsplash.com/photo-1775250869743-d08c72844f6e?auto=format&fit=crop&w=1600&q=85") center top / cover no-repeat;
+ filter:saturate(.85) hue-rotate(342deg) brightness(1.02) contrast(1.17);
+ transform:scaleX(-1);
+ -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 30%,transparent 52%);mask-image:linear-gradient(90deg,#000 0%,#000 30%,transparent 52%)}
+.curtain-mirror::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,1,8,.25),transparent 60%),linear-gradient(180deg,rgba(14,1,9,.04),rgba(9,1,7,.26))}
+
+/* Muted gold glints: slow, soft twinkle in the stage dust */
+.ambient{display:none!important}
+.glints{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.glints span{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;
+ background:radial-gradient(circle,rgba(255,240,205,.95) 0,rgba(232,190,110,.55) 38%,rgba(232,190,110,0) 72%);
+ filter:blur(var(--b));opacity:0;
+ animation:glint var(--d) ease-in-out var(--delay) infinite,glint-drift var(--f) ease-in-out var(--delay) infinite alternate}
+.glints span.star::before,.glints span.star::after{content:"";position:absolute;left:50%;top:50%;width:420%;height:1px;transform:translate(-50%,-50%);
+ background:linear-gradient(90deg,transparent,rgba(255,232,180,.7),transparent)}
+.glints span.star::after{transform:translate(-50%,-50%) rotate(90deg)}
+@keyframes glint{0%,100%{opacity:0;scale:.55}45%,55%{opacity:var(--o);scale:1}}
+@keyframes glint-drift{from{translate:0 0}to{translate:var(--dx) var(--dy)}}
+@media(prefers-reduced-motion:reduce){.glints span{animation:none;opacity:calc(var(--o) * .6)}}
 </style>
 </head>
 <body>
+<div class="curtain-mirror" aria-hidden="true"></div>
+<div class="glints" aria-hidden="true"></div>
 <div class="stage-curtains" aria-hidden="true"><div class="backdrop"></div><div class="wing left"></div><div class="wing right"></div><div class="swag left"></div><div class="swag right"></div><div class="spotlight"></div></div>
 <svg class="velvet-texture" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
 <filter id="velvet-grain" x="0" y="0" width="100%" height="100%">
@@ -436,6 +460,22 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "Intersecti
   items.forEach((item,i)=>{item.classList.add("reveal");item.style.setProperty("--reveal-delay",((i%3)*95)+"ms");observer.observe(item)});
   document.body.classList.add("reveal-ready");
 }
+</script>
+<script>
+// Muted gold glints scattered over the stage (fewer on small screens)
+(function(){
+  const box=document.querySelector(".glints"); if(!box) return;
+  const n=window.innerWidth<600?18:32, r=(a,b)=>a+Math.random()*(b-a);
+  for(let i=0;i<n;i++){
+    const s=document.createElement("span"), big=Math.random()<.18;
+    if(big&&Math.random()<.6) s.className="star";
+    s.style.cssText=`--x:${r(2,98).toFixed(1)}%;--y:${r(3,97).toFixed(1)}%;--s:${(big?r(5,8):r(2,4)).toFixed(1)}px;`+
+      `--b:${(big?r(.4,1):r(0,.6)).toFixed(2)}px;--o:${(big?r(.35,.55):r(.2,.45)).toFixed(2)};`+
+      `--d:${r(5,11).toFixed(1)}s;--f:${r(14,26).toFixed(1)}s;--delay:${(-r(0,12)).toFixed(1)}s;`+
+      `--dx:${r(-26,26).toFixed(0)}px;--dy:${r(-40,-12).toFixed(0)}px`;
+    box.appendChild(s);
+  }
+})();
 </script>
 </body>
 </html>
