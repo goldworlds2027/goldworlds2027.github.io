@@ -311,9 +311,65 @@ body::after{background:linear-gradient(180deg,transparent 35%,rgba(7,1,6,.24))!i
  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 30%,transparent 52%);mask-image:linear-gradient(90deg,#000 0%,#000 30%,transparent 52%)}
 .curtain-mirror::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,1,8,.25),transparent 60%),linear-gradient(180deg,rgba(14,1,9,.04),rgba(9,1,7,.26))}
 
+/* Flyer look (same as the printed flyer, invitations and roll-up banner):
+   black background with a warm halo behind the emblem, burgundy glow, faint baroque damask,
+   gold floral corners, Cinzel lettering in gold and thin double gold frames */
+:root{--fl-gold:#d9b25c;--fl-gold-hi:#f3d991;--fl-gold-lo:#b98d36;--fl-line:#c4a464;--fl-cream:#f4ead2;--fl-muted:#cbbba3;
+ --fl-gold-text:linear-gradient(180deg,#f3d991,#d9b25c 55%,#b98d36);
+ --fl-frame:0 0 0 1px rgba(217,178,92,.62),inset 0 0 0 5px rgba(8,4,5,.9),inset 0 0 0 6px rgba(217,178,92,.26),0 10px 26px rgba(0,0,0,.42)}
+html{background:#000}
+body{position:relative;background:
+ radial-gradient(ellipse min(78vw,560px) 430px at 50% 330px,rgba(201,154,82,.13),rgba(122,34,48,.30) 45%,rgba(58,13,20,.22) 75%,transparent 100%),
+ radial-gradient(ellipse min(90vw,640px) 620px at 50% 66%,rgba(90,20,32,.42),rgba(58,13,20,.26) 40%,rgba(26,6,8,.14) 70%,transparent 100%),
+ #000!important}
+body::before{background:none!important;filter:none!important}
+body::after{background:url("img/damask.svg") center top / 110px 150px repeat!important;filter:none!important;box-shadow:none!important;
+ -webkit-mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.4) 30%,rgba(0,0,0,.28) 50%,rgba(0,0,0,.4) 70%,#000);
+ mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.4) 30%,rgba(0,0,0,.28) 50%,rgba(0,0,0,.4) 70%,#000)}
+.curtain-mirror,.velvet-texture,.stage-curtains,.stage-light,.ambient{display:none!important}
+.flyer-corners{position:absolute;inset:0;pointer-events:none;z-index:1}
+.flyer-corners i{position:absolute;width:clamp(96px,17vw,150px);aspect-ratio:1;background:url("img/roh-kvetinovy.svg") 0 0 / 100% 100% no-repeat}
+.flyer-corners i:nth-child(1){top:0;left:0}
+.flyer-corners i:nth-child(2){top:0;right:0;transform:scaleX(-1)}
+.flyer-corners i:nth-child(3){bottom:0;left:0;transform:scaleY(-1)}
+.flyer-corners i:nth-child(4){bottom:0;right:0;transform:scale(-1)}
+.brand-art{filter:drop-shadow(0 10px 26px rgba(0,0,0,.45))!important}
+.section-label{font:600 12px Cinzel,serif!important;letter-spacing:.16em!important;color:var(--fl-gold)!important;background:var(--fl-gold-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section-label:before,.section-label:after{background:linear-gradient(90deg,rgba(217,178,92,0),rgba(217,178,92,.9))!important;max-width:110px}
+.count-item{background:linear-gradient(180deg,#0f0809,#060304)!important;border:0!important;border-radius:10px!important;box-shadow:var(--fl-frame)!important}
+.count-item b{color:var(--fl-gold)!important;background:var(--fl-gold-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.count-item span{color:var(--fl-muted)!important;font-family:Cinzel,serif!important;letter-spacing:.14em!important}
+.tagline{color:var(--fl-gold-hi)!important}
+.btn,.btn.primary,.hotel{background:linear-gradient(180deg,rgba(18,9,11,.94),rgba(7,4,5,.96))!important;border:0!important;box-shadow:var(--fl-frame)!important;backdrop-filter:none!important}
+.btn.primary{background:linear-gradient(180deg,#741a2c,#4a0f1c 60%,#300a13)!important}
+a.btn:hover,a.btn:focus-visible{box-shadow:0 0 0 1px var(--fl-gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),inset 0 0 0 6px rgba(243,217,145,.4),0 12px 30px rgba(0,0,0,.5)!important}
+.btn .ic{background:transparent!important;border:1px solid rgba(217,178,92,.7)!important;color:var(--fl-gold)!important}
+.btn .tx strong{font:600 17px/1.25 Cinzel,serif!important;letter-spacing:.05em!important;color:#ecd08f!important}
+.btn .tx small{color:var(--fl-muted)!important}
+.social .btn strong{font:600 14px Cinzel,serif!important;letter-spacing:.06em;color:#ecd08f}
+.btn .arr{color:var(--fl-gold)!important}
+.soon{font:600 10px/1 Cinzel,serif!important;letter-spacing:.14em!important;border:1px solid var(--fl-gold)!important;color:var(--fl-gold)!important;background:#0b0705}
+.hotel h3{font:600 20px Cinzel,serif!important;letter-spacing:.04em;color:var(--fl-gold)!important;background:var(--fl-gold-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hotel li:before{color:var(--fl-gold)}
+.code{border:1px dashed rgba(217,178,92,.55)!important;color:var(--fl-muted)!important}
+.code b{color:var(--fl-gold-hi)!important}
+.code button{background:var(--fl-gold-text)!important;color:#1a0f08!important;font-family:Cinzel,serif!important;font-weight:700!important;letter-spacing:.06em}
+.hotel .btn{box-shadow:0 0 0 1px rgba(217,178,92,.62)!important}
+footer{border-top:1px solid rgba(217,178,92,.25)!important;color:var(--fl-muted)!important;padding-bottom:70px!important}
+footer .brandline{color:var(--fl-gold)!important;letter-spacing:.2em!important}
+footer p:not(.brandline){font-family:Cinzel,serif;letter-spacing:.06em}
+@media(max-width:600px){
+ .btn .tx strong{font-size:15px!important;letter-spacing:.035em!important}
+ .hotel h3{font-size:16px!important}
+ .section-label{font-size:11px!important;letter-spacing:.13em!important}
+ .flyer-corners i{width:clamp(78px,24vw,104px)}
+ .wrap{padding-top:26px!important}
+}
+
 </style>
 </head>
 <body>
+<div class="flyer-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div class="curtain-mirror" aria-hidden="true"></div>
 <div class="stage-curtains" aria-hidden="true"><div class="backdrop"></div><div class="wing left"></div><div class="wing right"></div><div class="swag left"></div><div class="swag right"></div><div class="spotlight"></div></div>
 <svg class="velvet-texture" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
