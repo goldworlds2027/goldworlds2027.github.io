@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0204">
+<title>Worlds Sightseeing Tour – Gold Worlds 2027</title>
+<meta name="description" content="Worlds Sightseeing Tour – three Christmas days in Vienna, 29 November – 1 December 2027, before Gold Worlds 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="img/tour-intro-vienna.jpg" imagesrcset="img/tour-intro-vienna-sm.jpg 1100w, img/tour-intro-vienna.jpg 2000w" imagesizes="100vw">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+/* Tour booking link – an empty value shows a disabled “Coming soon” button. */
+const TOUR_BOOKING = "";
+</script>
+<style>
+:root{--gold:#d9b25c;--gold-hi:#f3d991;--gold-lo:#b98d36;--cream:#f7eedb;--paper:#fbf4e4;--muted:#d8c7a6;
+ --red:#a50e24;--red-hi:#d4253f;--wine:#4a0a14;--ink:#3a0b13;--pine:#24502f;
+ --gold-text:linear-gradient(180deg,#f3d991,#d9b25c 55%,#b98d36)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#0a0204;overflow-x:clip}
+body{overflow-x:clip;min-height:100vh;color:var(--cream);font:400 15px/1.55 Lato,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+ background:radial-gradient(120% 55% at 50% 0%,rgba(165,14,36,.35),transparent 65%),radial-gradient(100% 50% at 50% 100%,rgba(120,10,28,.45),transparent 70%),linear-gradient(180deg,#14040a,#0a0204 40%,#12030a)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.11;background:url(img/damask.svg) center top/110px 150px}
+.gt{background:var(--gold-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
+#flakes{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:clamp(380px,62vh,620px);overflow:hidden;isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.06);transition:transform 6s ease-out}
+.ready .hero img{transform:scale(1)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,2,4,.55) 0%,rgba(10,2,4,0) 26%,rgba(10,2,4,0) 45%,rgba(10,2,4,.75) 78%,#0a0204 100%)}
+.back{position:absolute;z-index:3;top:16px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;color:#fff3d4;text-decoration:none;white-space:nowrap;
+ font:600 11px Cinzel,serif;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:rgba(10,2,4,.55);box-shadow:0 0 0 1px rgba(217,178,92,.5)}
+.back:hover{color:var(--gold-hi);box-shadow:0 0 0 1px var(--gold-hi)}
+.hero-title{position:absolute;z-index:2;left:0;right:0;bottom:30px;text-align:center;padding:0 18px}
+.kicker{font:600 11px Cinzel,serif;letter-spacing:.24em;text-transform:uppercase;color:#fff3d4;text-shadow:0 2px 10px rgba(0,0,0,.9)}
+h1{margin-top:12px;line-height:1}
+h1 .script{display:block;font:400 clamp(50px,10vw,84px)/.92 "Great Vibes",cursive;margin-bottom:-.12em;color:#ffe9b0;text-shadow:0 0 18px rgba(212,37,63,.55),0 2px 12px rgba(0,0,0,.9)}
+h1 .caps{display:block;margin-top:0;font:600 clamp(20px,4.4vw,34px)/1.15 Cinzel,serif;letter-spacing:.08em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.9))}
+.garland{height:72px;margin:-34px 0 -20px;position:relative;z-index:3;pointer-events:none;background:url(img/xmas-garland.webp) center top/auto 100% repeat-x;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55))}
+@media(max-width:600px){.garland{height:58px;margin:-28px 0 -16px}}
+
+/* ---------- page ---------- */
+.wrap{position:relative;z-index:1;width:min(calc(100% - 32px),1000px);margin:0 auto;padding:10px 0 70px}
+.intro-text{text-align:center;margin:18px auto 0;max-width:560px}
+.intro-text p{color:var(--muted);font-size:16.5px}
+.dates{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:10px 20px;border-radius:999px;font:600 13px Cinzel,serif;letter-spacing:.1em;color:#fff3d4;
+ background:radial-gradient(120% 220% at 0% 50%,rgba(212,37,63,.55),rgba(74,10,20,.95) 55%,rgba(30,4,9,.97));box-shadow:0 0 0 1px var(--gold),inset 0 0 0 4px rgba(20,3,7,.85),inset 0 0 0 5px rgba(217,178,92,.35),0 8px 20px rgba(0,0,0,.45);padding:12px 24px;color:#ffe9b0}
+.rule{display:flex;align-items:center;gap:12px;margin:42px 0 34px;font:400 36px/1.2 "Great Vibes",cursive}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(217,178,92,.85),transparent)}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 18px}
+@media(max-width:860px){.days{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+.day{position:relative;padding:36px 22px 22px;border-radius:16px;color:var(--ink);
+ background:radial-gradient(120% 80% at 50% 0%,#fffaf0,var(--paper) 55%,#f1e3c4);
+ box-shadow:0 0 0 1px #c9a24f,inset 0 0 0 6px var(--paper),inset 0 0 0 7px rgba(185,141,54,.55),0 14px 30px rgba(0,0,0,.5)}
+.day::before{content:"";position:absolute;top:-30px;left:50%;width:72px;height:59px;transform:translateX(-50%);background:url(img/xmas-bow.webp) center/contain no-repeat;filter:drop-shadow(0 4px 4px rgba(0,0,0,.35))}
+.day .when{text-align:center;font:400 28px/1.1 "Great Vibes",cursive;color:var(--red)}
+.day .when b{display:block;margin-bottom:6px;font:700 11px Cinzel,serif;letter-spacing:.18em;color:#8a6a2a;text-transform:uppercase}
+.day h3{margin:10px 0 14px;text-align:center;font:700 17px/1.3 Cinzel,serif;letter-spacing:.02em;color:var(--ink)}
+.day h3::after{content:"";display:block;width:70px;height:1px;margin:12px auto 0;background:linear-gradient(90deg,transparent,#b98d36,transparent)}
+.day ul{list-style:none}
+.day li{position:relative;padding-left:24px;margin:8px 0;font-size:15px;color:#3d2a20}
+.day li::before{content:"";position:absolute;left:0;top:1px;width:15px;height:19px;background:url(img/xmas-bauble.svg) center/contain no-repeat;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+.day li em{color:#8a6a2a}
+.price{position:relative;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:26px;margin-top:40px;padding:24px 28px;border-radius:16px;
+ background:radial-gradient(120% 140% at 0% 50%,rgba(212,37,63,.55),rgba(74,10,20,.95) 55%,rgba(30,4,9,.97));
+ box-shadow:0 0 0 1px var(--gold),inset 0 0 0 5px rgba(20,3,7,.85),inset 0 0 0 6px rgba(217,178,92,.35),0 14px 30px rgba(0,0,0,.5)}
+.price .amount{font:700 clamp(42px,8vw,58px)/1 Cinzel,serif;text-align:center;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.price .amount small{display:block;margin-top:4px;font:400 26px "Great Vibes",cursive;-webkit-text-fill-color:#ffe9b0;color:#ffe9b0}
+.price p{font-size:16px;color:#fff3d4}.price p strong{display:block;font:600 17px/1.35 Cinzel,serif;letter-spacing:.02em;color:#ffe9b0}
+.price p span{display:block;margin-top:6px;color:var(--muted);font-size:14px}
+@media(max-width:560px){.price{grid-template-columns:1fr;text-align:center;gap:12px}}
+.book{display:flex;align-items:center;justify-content:center;gap:12px;margin:26px auto 0;max-width:420px;min-height:62px;padding:12px 20px;border-radius:14px;text-decoration:none;
+ background:linear-gradient(180deg,rgba(30,6,11,.95),rgba(12,3,5,.97));box-shadow:0 0 0 1px rgba(217,178,92,.62),inset 0 0 0 5px rgba(8,4,5,.9),inset 0 0 0 6px rgba(217,178,92,.26),0 10px 26px rgba(0,0,0,.42);
+ font:600 17px Cinzel,serif;letter-spacing:.06em;color:var(--gold-hi)}
+a.book:hover{box-shadow:0 0 0 1px var(--gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),inset 0 0 0 6px rgba(243,217,145,.45),0 12px 30px rgba(0,0,0,.5)}
+.book .soon{font:600 10px/1 Cinzel,serif;letter-spacing:.14em;border:1px solid var(--gold);color:var(--gold);padding:6px 9px;border-radius:999px;text-transform:uppercase}
+.book.off{cursor:default}
+.wish{position:relative;margin:54px auto 0;max-width:640px;text-align:center}
+.ribbon{position:relative;width:min(100%,680px);aspect-ratio:1400/223;margin:0 auto;background:url(img/xmas-ribbon.webp) center/contain no-repeat;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5)) saturate(.95) brightness(.9)}
+.ribbon span{position:absolute;left:12%;right:16%;top:0;height:70%;display:flex;align-items:center;justify-content:center;white-space:nowrap;
+ color:#ffe9b0;font:400 clamp(17px,5vw,34px)/1 "Great Vibes",cursive;text-shadow:0 2px 6px rgba(40,0,8,.8),0 0 1px rgba(40,0,8,.6)}
+
+/* ---------- intro ---------- */
+#intro{position:fixed;inset:0;z-index:50;background:#000;overflow:hidden;cursor:pointer}
+#intro .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;opacity:0;transform:scale(1.18);
+ animation:i-bg 6.4s cubic-bezier(.25,.1,.25,1) .2s forwards}
+@media(orientation:portrait){#intro .bg{animation-name:i-bg-pan}}
+#intro::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+ background:radial-gradient(70% 60% at 50% 42%,rgba(0,0,0,.05),rgba(0,0,0,.55) 75%,rgba(0,0,0,.85)),linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 70%,rgba(0,0,0,.6))}
+#intro canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.i-title{position:absolute;z-index:3;left:0;right:0;top:50%;transform:translateY(-62%);text-align:center;padding:0 22px;text-shadow:0 2px 20px rgba(0,0,0,.9)}
+.i-title .k{display:block;font:600 11px Cinzel,serif;letter-spacing:.32em;text-transform:uppercase;color:#fff3d4;opacity:0;animation:i-up .9s ease-out 1.3s forwards}
+.i-title .s{display:block;margin-top:14px;font:400 clamp(60px,13vw,120px)/.92 "Great Vibes",cursive;margin-bottom:-.12em;color:#ffe9b0;opacity:0;
+ text-shadow:0 0 26px rgba(212,37,63,.7),0 0 6px rgba(255,233,176,.6),0 3px 16px rgba(0,0,0,.9);animation:i-in 1.4s ease-out 1.7s forwards}
+.i-title .c{display:block;margin-top:0;font:600 clamp(17px,4.2vw,34px)/1.1 Cinzel,serif;color:#fff3d4;opacity:0;animation:i-track 1.6s cubic-bezier(.2,.7,.2,1) 2.3s forwards}
+.i-title .ln{display:block;width:min(70vw,420px);height:1px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#f3d991,transparent);transform:scaleX(0);animation:i-line 1s ease-out 2.9s forwards}
+.i-title .d{display:block;margin-top:12px;font:600 12px Cinzel,serif;letter-spacing:.22em;color:var(--gold-hi);opacity:0;animation:i-up .9s ease-out 3.2s forwards}
+#skip{position:absolute;right:16px;bottom:18px;z-index:6;background:rgba(0,0,0,.35);border:1px solid rgba(217,178,92,.6);color:var(--gold-hi);font:600 10px Cinzel,serif;letter-spacing:.16em;padding:8px 12px;border-radius:999px;cursor:pointer;opacity:0;animation:i-up .6s ease-out 1s forwards}
+#intro .flash{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;background:radial-gradient(60% 50% at 50% 45%,rgba(255,240,200,.9),rgba(243,217,145,.25) 45%,transparent 75%)}
+#intro.out{animation:i-out 1.2s ease-in-out forwards}
+#intro.out .flash{animation:i-flash 1.2s ease-out forwards}
+#intro.out .i-title{transition:transform 1.2s ease-in,opacity 1s ease-in;transform:translateY(-62%) scale(1.15);opacity:0}
+@keyframes i-bg{0%{opacity:0;transform:scale(1.18)}18%{opacity:1}100%{opacity:1;transform:scale(1.02)}}
+@keyframes i-bg-pan{0%{opacity:0;transform:scale(1.12);object-position:12% 50%}18%{opacity:1}100%{opacity:1;transform:scale(1);object-position:70% 50%}}
+@keyframes i-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes i-in{from{opacity:0;transform:scale(.9);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes i-track{from{opacity:0;letter-spacing:.9em}to{opacity:1;letter-spacing:.16em}}
+@keyframes i-line{to{transform:scaleX(1)}}
+@keyframes i-flash{0%{opacity:0}30%{opacity:.85}100%{opacity:0}}
+@keyframes i-out{0%,25%{opacity:1}100%{opacity:0;visibility:hidden}}
+
+/* page reveal after the intro */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+.ready .rv{opacity:1;transform:none}
+.ready .day:nth-child(2){transition-delay:.15s}.ready .day:nth-child(3){transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){#intro,#flakes{display:none}.rv{opacity:1;transform:none;transition:none}.hero img{transform:none}}
+</style>
+</head>
+<body>
+<canvas id="flakes" aria-hidden="true"></canvas>
+
+<div id="intro" role="presentation" aria-hidden="true">
+  <img class="bg" src="img/tour-intro-vienna.jpg" srcset="img/tour-intro-vienna-sm.jpg 1100w, img/tour-intro-vienna.jpg 2000w" sizes="100vw" alt="">
+  <canvas id="snow"></canvas>
+  <div class="i-title">
+    <span class="k">Gold Worlds 2027 presents</span>
+    <span class="s">Worlds</span>
+    <span class="c">Sightseeing Tour</span>
+    <span class="ln"></span>
+    <span class="d">Vienna · 29 Nov – 1 Dec 2027</span>
+  </div>
+  <div class="flash"></div>
+  <button id="skip" type="button">Skip ›</button>
+</div>
+
+<header class="hero">
+  <img src="img/tour-schoenbrunn.jpg" alt="Schönbrunn Palace Christmas market in the snow with a horse-drawn carriage">
+  <a class="back" href="./">‹ Gold Worlds 2027</a>
+  <div class="hero-title rv">
+    <div class="kicker">Welcome to our</div>
+    <h1><span class="script">Vienna</span><span class="caps gt">Worlds Sightseeing Tour</span></h1>
+  </div>
+</header>
+<div class="garland" aria-hidden="true"></div>
+
+<main class="wrap">
+  <div class="intro-text rv">
+    <p>Three unforgettable Christmas days in the beautiful city of Vienna.</p>
+    <span class="dates">29 November – 1 December 2027</span>
+  </div>
+
+  <div class="rule rv"><span class="gt">The programme</span></div>
+  <div class="days">
+    <article class="day rv">
+      <div class="when"><b>Day 1 · Monday</b>29 November 2027</div>
+      <h3>Imperial Vienna &amp; the Historic City Centre</h3>
+      <ul><li>Hofburg Palace &amp; Imperial Apartments</li><li>Michaelerplatz, Kohlmarkt &amp; Graben</li><li>Christmas markets</li><li>St. Stephen’s Cathedral &amp; Vienna State Opera</li></ul>
+    </article>
+    <article class="day rv">
+      <div class="when"><b>Day 2 · Tuesday</b>30 November 2027</div>
+      <h3>Schönbrunn Palace</h3>
+      <ul><li>Schönbrunn Palace</li><li>Gloriette with panoramic views</li><li>Schönbrunn Christmas Market</li><li><em>Optional:</em> Chocolate Museum or Hundertwasser House</li></ul>
+    </article>
+    <article class="day rv">
+      <div class="when"><b>Day 3 · Wednesday</b>1 December 2027</div>
+      <h3>Belvedere Palace &amp; Vienna’s Cultural Treasures</h3>
+      <ul><li>Belvedere Palace &amp; Gustav Klimt’s “The Kiss”</li><li>Wien Museum at Karlsplatz</li><li>St. Charles’ Church (Karlskirche)</li></ul>
+    </article>
+  </div>
+
+  <section class="price rv">
+    <div class="amount gt">€150,-<small>per day</small></div>
+    <p><strong>Including entry tickets, guides &amp; bus transfer</strong><span>Not including food and drinks.</span></p>
+  </section>
+
+  <div class="rv" id="book"></div>
+
+  <div class="wish rv">
+    <div class="ribbon"><span>We wish you a wonderful stay!</span></div>
+  </div>
+</main>
+
+<script>
+(function(){
+  const b=document.getElementById("book");
+  b.innerHTML=TOUR_BOOKING
+    ? `<a class="book" href="${TOUR_BOOKING}" target="_blank" rel="noopener">Book the tour <span aria-hidden="true">›</span></a>`
+    : `<div class="book off">Book the tour <span class="soon">Coming soon</span></div>`;
+
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // snow helper: gently falling flakes on a canvas, some of them warm gold
+  function snow(cv,n,alpha){
+    const cx=cv.getContext("2d");let W,H,d,P=[],on=true;
+    function size(){d=Math.min(devicePixelRatio||1,2);W=cv.width=cv.clientWidth*d;H=cv.height=cv.clientHeight*d}
+    size();addEventListener("resize",size);
+    for(let i=0;i<n;i++)P.push({x:Math.random(),y:Math.random(),r:.6+Math.random()*2,s:.0005+Math.random()*.0014,w:Math.random()*6.28,g:Math.random()<.3});
+    (function loop(){if(!on)return;cx.clearRect(0,0,W,H);
+      for(const p of P){p.y+=p.s;p.w+=.015;if(p.y>1.02){p.y=-.02;p.x=Math.random()}
+        cx.beginPath();cx.arc((p.x+Math.sin(p.w)*.008)*W,p.y*H,p.r*d,0,6.283);
+        cx.fillStyle=p.g?`rgba(243,217,145,${alpha})`:`rgba(255,255,255,${alpha*.9})`;cx.shadowBlur=6*d;cx.shadowColor=p.g?"#f3d991":"#fff";cx.fill()}
+      requestAnimationFrame(loop)})();
+    return()=>{on=false;cx.clearRect(0,0,W,H)};
+  }
+  if(!reduce)snow(document.getElementById("flakes"),innerWidth<600?35:60,.5);
+
+  const intro=document.getElementById("intro");let done=false,stop=()=>{};
+  function finish(){
+    if(done)return;done=true;document.body.classList.add("ready");
+    if(!intro.isConnected||intro.style.display==="none")return;
+    intro.classList.add("out");setTimeout(()=>{stop();intro.remove()},1250);
+  }
+  if(reduce){intro.style.display="none";finish();return}
+  stop=snow(document.getElementById("snow"),110,.85);
+  intro.addEventListener("click",finish);
+  addEventListener("keydown",e=>{if(["Escape","Enter"," "].includes(e.key))finish()});
+  setTimeout(finish,6000);
+})();
+</script>
+</body>
+</html>
