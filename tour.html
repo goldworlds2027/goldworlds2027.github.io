@@ -11,8 +11,11 @@
 <link rel="preload" as="image" href="img/tour-intro-vienna.jpg" imagesrcset="img/tour-intro-vienna-sm.jpg 1100w, img/tour-intro-vienna.jpg 2000w" imagesizes="100vw">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
 <script>
-/* Tour booking link – an empty value shows a disabled “Coming soon” button. */
+/* BOOKING_API = URL of the Google Apps Script web app (…/exec) – stores bookings in the Google Sheet
+   and returns free seats per day. Empty = form shows “not connected yet”.
+   TOUR_BOOKING (optional) = external booking link that replaces the form. */
 const TOUR_BOOKING = "";
+const BOOKING_API = "";
 </script>
 <style>
 :root{--gold:#d9b25c;--gold-hi:#f3d991;--gold-lo:#b98d36;--cream:#f7eedb;--paper:#fbf4e4;--muted:#d8c7a6;
@@ -117,6 +120,66 @@ a.book:hover{box-shadow:0 0 0 1px var(--gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),
 .ready .rv{opacity:1;transform:none}
 .ready .day:nth-child(2){transition-delay:.15s}.ready .day:nth-child(3){transition-delay:.3s}
 @media(prefers-reduced-motion:reduce){#intro,#flakes{display:none}.rv{opacity:1;transform:none;transition:none}.hero img{transform:none}}
+/* ---------- booking form (dialog) ---------- */
+button.book{width:100%;border:0;cursor:pointer;font-family:Cinzel,serif}
+button.book:hover{box-shadow:0 0 0 1px var(--gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),inset 0 0 0 6px rgba(243,217,145,.45),0 12px 30px rgba(0,0,0,.5)}
+button.book .arr{font-size:22px;line-height:1}
+#bk{width:min(calc(100% - 24px),560px);max-height:calc(100dvh - 24px);margin:auto;padding:0;border:0;border-radius:18px;color:var(--cream);overflow:auto;
+ background:radial-gradient(120% 60% at 50% 0%,rgba(212,37,63,.35),rgba(30,4,9,.98) 60%),#14040a;
+ box-shadow:0 0 0 1px var(--gold),inset 0 0 0 5px rgba(20,3,7,.85),inset 0 0 0 6px rgba(217,178,92,.35),0 30px 80px rgba(0,0,0,.7)}
+#bk::backdrop{background:rgba(5,0,2,.72);backdrop-filter:blur(3px)}
+#bk[open]{animation:bk-in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes bk-in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.bk-in{padding:26px 24px 24px}
+.bk-head{text-align:center;margin-bottom:18px}
+.bk-head .script{font:400 38px/1 "Great Vibes",cursive;color:#ffe9b0}
+.bk-head .caps{display:block;margin-top:4px;font:600 15px Cinzel,serif;letter-spacing:.12em}
+.bk-head p{margin-top:8px;color:var(--muted);font-size:13.5px}
+.bk-x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,178,92,.55);background:rgba(10,2,4,.6);color:var(--gold-hi);font-size:20px;line-height:1;cursor:pointer}
+.bk-x:hover{border-color:var(--gold-hi)}
+.bk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.bk-grid .full{grid-column:1/-1}
+@media(max-width:520px){.bk-grid{grid-template-columns:1fr}.bk-in{padding:22px 16px 18px}}
+.fld label,.fld legend{display:block;margin-bottom:6px;font:600 11px Cinzel,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.fld input,.fld select,.fld textarea{width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(217,178,92,.45);background:rgba(10,2,4,.65);color:#fff3d4;font:400 15px Lato,system-ui,sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
+.fld textarea{min-height:76px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold-hi);box-shadow:0 0 0 3px rgba(217,178,92,.18)}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(216,199,166,.55)}
+.fld select option{background:#1a050b}
+fieldset.fld{border:0}
+.days-pick{display:grid;gap:8px}
+.dp{position:relative;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;border:1px solid rgba(217,178,92,.35);background:rgba(10,2,4,.45);cursor:pointer;transition:border-color .2s,background .2s}
+.dp:hover{border-color:rgba(243,217,145,.7)}
+.fld .dp{display:flex;margin:0;font:400 14.5px/1.3 Lato,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--cream)}
+.dp input{position:absolute;opacity:0;pointer-events:none}
+.dp .box{flex:0 0 22px;height:22px;border-radius:6px;border:1px solid var(--gold);display:grid;place-items:center;color:transparent;font-size:14px;transition:background .2s,color .2s}
+.dp .t{flex:1;font-size:14.5px;line-height:1.3}.dp .t b{display:block;font:600 13px Cinzel,serif;letter-spacing:.04em;color:#ffe9b0}
+.dp .t small{color:var(--muted)}
+.dp .p{font:600 13px Cinzel,serif;color:var(--gold-hi)}
+.dp:has(input:checked){border-color:var(--gold-hi);background:linear-gradient(90deg,rgba(165,14,36,.45),rgba(74,10,20,.5))}
+.dp input:checked+.box{background:var(--gold-text);color:#3a0b13}
+.dp input:focus-visible+.box{box-shadow:0 0 0 3px rgba(217,178,92,.35)}
+.bk-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:14px 16px;border-radius:12px;
+ background:radial-gradient(120% 220% at 0% 50%,rgba(212,37,63,.5),rgba(74,10,20,.95) 55%,rgba(30,4,9,.97));box-shadow:0 0 0 1px rgba(217,178,92,.6)}
+.bk-total span{color:var(--muted);font-size:13.5px}.bk-total b{font:700 26px Cinzel,serif;white-space:nowrap}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;color:var(--muted);cursor:pointer}
+.chk input{margin-top:3px;accent-color:#d9b25c;width:16px;height:16px;flex:0 0 16px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.bk-send{margin-top:18px}
+.bk-send[disabled]{opacity:.6;cursor:wait}
+.bk-msg{margin-top:12px;text-align:center;font-size:14px;min-height:1em}
+.bk-msg.err{color:#ff9aa8}
+.dp .seats{display:block;margin-top:6px;font-size:12px;color:var(--muted)}
+.dp .seats i{display:block;height:4px;margin-top:4px;border-radius:3px;background:rgba(217,178,92,.18);overflow:hidden}
+.dp .seats i::before{content:"";display:block;height:100%;width:var(--fill,0%);background:linear-gradient(90deg,#a50e24,#d9b25c);transition:width .6s}
+.dp .seats i::after{content:"";position:relative;display:block;top:-4px;left:var(--min,50%);width:2px;height:4px;background:#ffe9b0}
+.dp .t .seats b{display:inline;font:700 12px/1.4 Lato,system-ui,sans-serif;letter-spacing:0;color:#ffe9b0}
+.dp.full .seats{color:#ffcf8a}.dp.off{opacity:.45;cursor:not-allowed}
+.bk-note{margin-top:10px;font-size:12.5px;color:var(--muted);text-align:center}
+.bk-done{text-align:center;padding:26px 6px 8px}
+.bk-done .script{font:400 44px/1 "Great Vibes",cursive;color:#ffe9b0}
+.bk-done p{margin-top:12px;color:#fff3d4}
+.bk-done small{display:block;margin-top:8px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -183,12 +246,119 @@ a.book:hover{box-shadow:0 0 0 1px var(--gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),
   </div>
 </main>
 
+<dialog id="bk" aria-labelledby="bk-title">
+  <button class="bk-x" type="button" data-close aria-label="Close">×</button>
+  <div class="bk-in">
+    <form id="bk-form" novalidate>
+      <div class="bk-head">
+        <div class="script" id="bk-title">Book the tour</div>
+        <span class="caps gt">Worlds Sightseeing Tour</span>
+        <p>Choose your days and send us your booking request – we will confirm it by e-mail.</p>
+      </div>
+      <div class="bk-grid">
+        <div class="fld full"><label for="bk-name">Full name *</label><input id="bk-name" name="Name" autocomplete="name" required placeholder="Name Surname"></div>
+        <div class="fld"><label for="bk-email">E-mail *</label><input id="bk-email" name="E-mail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <div class="fld"><label for="bk-phone">Phone</label><input id="bk-phone" name="Phone" type="tel" autocomplete="tel" placeholder="+43 …"></div>
+        <div class="fld"><label for="bk-team">Team / club</label><input id="bk-team" name="Team / club" placeholder="Team name"></div>
+        <div class="fld"><label for="bk-country">Country *</label><input id="bk-country" name="Country" autocomplete="country-name" required placeholder="Country"></div>
+        <fieldset class="fld full">
+          <legend>Days *</legend>
+          <div class="days-pick">
+            <label class="dp"><input type="checkbox" name="day" value="D1"><span class="box">✓</span><span class="t"><b>Day 1 · Mon 29 Nov</b><small>Imperial Vienna &amp; the Historic City Centre</small><span class="seats" hidden></span></span><span class="p">€150</span></label>
+            <label class="dp"><input type="checkbox" name="day" value="D2"><span class="box">✓</span><span class="t"><b>Day 2 · Tue 30 Nov</b><small>Schönbrunn Palace</small><span class="seats" hidden></span></span><span class="p">€150</span></label>
+            <label class="dp"><input type="checkbox" name="day" value="D3"><span class="box">✓</span><span class="t"><b>Day 3 · Wed 1 Dec</b><small>Belvedere Palace &amp; Vienna’s Cultural Treasures</small><span class="seats" hidden></span></span><span class="p">€150</span></label>
+          </div>
+        </fieldset>
+        <div class="fld"><label for="bk-people">Number of people *</label><input id="bk-people" name="Number of people" type="number" min="1" max="50" value="1" required inputmode="numeric"></div>
+        <div class="fld"><label for="bk-opt">Day 2 optional visit</label>
+          <select id="bk-opt" name="Day 2 optional visit"><option>Not decided yet</option><option>Chocolate Museum</option><option>Hundertwasser House</option><option>None</option></select></div>
+        <div class="fld full"><label for="bk-note">Note</label><textarea id="bk-note" name="Note" placeholder="Names of other participants, dietary or accessibility needs, questions…"></textarea></div>
+      </div>
+      <p class="bk-note" id="bk-rule">Each tour day takes place with a minimum of 25 and a maximum of 50 participants. Payment details follow by e-mail once your day is confirmed.</p>
+      <div class="bk-total"><span>Estimated price<br><small>entry tickets, guides &amp; bus transfer · food and drinks not included</small></span><b class="gt" id="bk-sum">€0</b></div>
+      <label class="chk"><input type="checkbox" id="bk-ok" required><span>I agree that my details will be used to process this booking request.</span></label>
+      <div class="hp" aria-hidden="true"><label>Leave empty<input name="_honey" tabindex="-1" autocomplete="off"></label></div>
+      <button class="book bk-send" type="submit">Send booking request <span class="arr" aria-hidden="true">›</span></button>
+      <div class="bk-msg" id="bk-msg" role="status" aria-live="polite"></div>
+    </form>
+    <div class="bk-done" id="bk-done" hidden>
+      <div class="script">Thank you!</div>
+      <p id="bk-done-t">Your booking request has been sent.</p>
+      <small id="bk-done-s">We will confirm your booking by e-mail. See you in Vienna!</small>
+      <button class="book" type="button" data-close style="margin-top:22px">Close</button>
+    </div>
+  </div>
+</dialog>
+
+
 <script>
 (function(){
   const b=document.getElementById("book");
-  b.innerHTML=TOUR_BOOKING
-    ? `<a class="book" href="${TOUR_BOOKING}" target="_blank" rel="noopener">Book the tour <span aria-hidden="true">›</span></a>`
-    : `<div class="book off">Book the tour <span class="soon">Coming soon</span></div>`;
+  if(TOUR_BOOKING){
+    b.innerHTML=`<a class="book" href="${TOUR_BOOKING}" target="_blank" rel="noopener">Book the tour <span aria-hidden="true">›</span></a>`;
+  }else if(!BOOKING_API){
+    // booking sheet not connected yet
+    b.innerHTML=`<div class="book off">Book the tour <span class="soon">Coming soon</span></div>`;
+  }else{
+    // booking form in a dialog, stored in the Google Sheet through the Apps Script web app (BOOKING_API)
+    b.innerHTML=`<button class="book" type="button" id="bk-open">Book the tour <span class="arr" aria-hidden="true">›</span></button>`;
+    const dlg=document.getElementById("bk"),form=document.getElementById("bk-form"),msg=document.getElementById("bk-msg"),sum=document.getElementById("bk-sum");
+    const days=()=>[...form.querySelectorAll('input[name="day"]:checked')].map(i=>i.value);
+    const people=()=>Math.max(1,Math.min(50,parseInt(form["bk-people"].value,10)||1));
+    let PRICE=150,MIN=25,MAX=50,AV=null;
+    const total=()=>days().length*people()*PRICE;
+    // seats per day from the Google Sheet (Apps Script web app)
+    const paint=()=>{
+      if(!AV)return;
+      for(const d of AV.days){
+        const inp=form.querySelector('input[value="'+d.key+'"]');if(!inp)continue;
+        const lab=inp.closest(".dp"),el=lab.querySelector(".seats");el.hidden=false;
+        lab.classList.toggle("off",!!d.cancelled);lab.classList.toggle("full",!d.cancelled&&d.left<people());
+        inp.disabled=!!d.cancelled;if(d.cancelled)inp.checked=false;
+        const need=Math.max(0,MIN-d.booked);
+        el.innerHTML=d.cancelled?"This day will not take place."
+          :(d.left<=0?"<b>Fully booked</b> – waiting list only"
+            :"<b>"+d.left+"</b> of "+MAX+" seats left"+(need?" · "+need+" more needed to confirm the day":" · <b>day confirmed ✓</b>")
+              +(d.left<people()?" · <b>waiting list</b> for "+people()+" people":""))
+          +'<i style="--fill:'+Math.min(100,d.booked/MAX*100)+'%;--min:'+(MIN/MAX*100)+'%"></i>';
+      }
+    };
+    const load=()=>{if(!BOOKING_API)return;fetch(BOOKING_API+"?action=availability").then(r=>r.json()).then(j=>{if(!j.ok)return;AV=j;PRICE=j.price||PRICE;MIN=j.min||MIN;MAX=j.max||MAX;
+      document.getElementById("bk-rule").textContent="Each tour day takes place with a minimum of "+MIN+" and a maximum of "+MAX+" participants. Payment details follow by e-mail once your day is confirmed."+(j.decision?" All days will be confirmed by "+j.decision+".":"");
+      paint();upd()}).catch(()=>{})};
+    const upd=()=>{sum.textContent="€"+total().toLocaleString("en");paint()};
+    form.addEventListener("input",upd);upd();
+    document.getElementById("bk-open").addEventListener("click",()=>{dlg.showModal();load()});
+    dlg.querySelectorAll("[data-close]").forEach(x=>x.addEventListener("click",()=>dlg.close()));
+    dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+    form.addEventListener("submit",async e=>{
+      e.preventDefault();msg.className="bk-msg";msg.textContent="";
+      const bad=(t,el)=>{msg.className="bk-msg err";msg.textContent=t;if(el)el.focus()};
+      if(!form["bk-name"].value.trim())return bad("Please enter your name.",form["bk-name"]);
+      if(!form["bk-email"].value||!form["bk-email"].validity.valid)return bad("Please enter a valid e-mail.",form["bk-email"]);
+      if(!form["bk-country"].value.trim())return bad("Please enter your country.",form["bk-country"]);
+      if(!days().length)return bad("Please choose at least one day.");
+      if(!document.getElementById("bk-ok").checked)return bad("Please confirm the consent checkbox.",document.getElementById("bk-ok"));
+      if(!BOOKING_API)return bad("Online booking is not connected yet – please try again later.");
+      const v=n=>(form.querySelector('[name="'+n+'"]')||{}).value||"";
+      const data={name:v("Name").trim(),email:v("E-mail").trim(),phone:v("Phone"),team:v("Team / club"),country:v("Country"),
+        days:days(),people:people(),option:v("Day 2 optional visit"),note:v("Note"),consent:true,_honey:v("_honey")};
+      const send=form.querySelector(".bk-send");send.disabled=true;msg.textContent="Sending…";
+      try{
+        // text/plain = no CORS preflight (Apps Script cannot answer OPTIONS)
+        const r=await fetch(BOOKING_API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
+        const j=await r.json();
+        if(!j.ok)throw new Error(j.error||"error");
+        const wait=j.status==="waitlist";
+        document.getElementById("bk-done-t").innerHTML=wait?"The selected day is fully booked – you are on the <b>waiting list</b> ("+j.id+").":"Your booking request <b>"+j.id+"</b> has been received.";
+        document.getElementById("bk-done-s").textContent=wait?"We will contact you by e-mail as soon as a place becomes free.":"A confirmation is on its way to your e-mail. Payment details follow once your day reaches "+MIN+" participants.";
+        form.hidden=true;document.getElementById("bk-done").hidden=false;
+      }catch(err){
+        bad(String(err.message)==="day_cancelled"?"Sorry, one of the selected days will not take place.":"Sorry, the request could not be sent. Please try again in a moment.");
+        load();
+      }finally{send.disabled=false}
+    });
+  }
 
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   // snow helper: gently falling flakes on a canvas, some of them warm gold
