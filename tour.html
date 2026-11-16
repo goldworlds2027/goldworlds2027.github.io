@@ -52,6 +52,7 @@ h1 .caps{display:block;margin-top:0;font:600 clamp(20px,4.4vw,34px)/1.15 Cinzel,
 .dates{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:10px 20px;border-radius:999px;font:600 13px Cinzel,serif;letter-spacing:.1em;color:#fff3d4;
  background:radial-gradient(120% 220% at 0% 50%,rgba(212,37,63,.55),rgba(74,10,20,.95) 55%,rgba(30,4,9,.97));box-shadow:0 0 0 1px var(--gold),inset 0 0 0 4px rgba(20,3,7,.85),inset 0 0 0 5px rgba(217,178,92,.35),0 8px 20px rgba(0,0,0,.45);padding:12px 24px;color:#ffe9b0}
 .rule{display:flex;align-items:center;gap:12px;margin:42px 0 34px;font:400 36px/1.2 "Great Vibes",cursive}
+.rule .gt{padding:.12em .3em .18em;margin:-.12em -.3em -.18em} /* room for script swashes – background-clip:text would cut them */
 .rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(217,178,92,.85),transparent)}
 .days{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 18px}
 @media(max-width:860px){.days{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
