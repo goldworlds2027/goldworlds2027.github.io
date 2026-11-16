@@ -410,7 +410,8 @@ a.btn:active{transform:scale(.985)!important}
 #main-links .btn:nth-child(2)::after,#travel-links .btn:nth-child(1)::after{--glint:1.4s}
 #travel-links .btn:nth-child(2)::after,#more-links .btn:nth-child(1)::after{--glint:2.8s}
 #more-links .btn:nth-child(2)::after,.social .btn::after{--glint:4.2s}
-/* glint moves with transform (GPU) instead of background-position (repaint every frame) */
+/* glint moves with transform (GPU) instead of background-position (repaint every frame); the card clips it */
+.btn{overflow:hidden!important}
 @keyframes nv-glint{0%,62%{transform:translateX(-70%)}100%{transform:translateX(70%)}}
 /* motion: the emblem breathes gently, seconds fade in on every tick */
 .brand-art{animation:emblem-entrance 1.2s ease-out both,nv-breathe 7s ease-in-out 1.2s infinite alternate!important}
