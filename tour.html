@@ -40,8 +40,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .hero-title{position:absolute;z-index:2;left:0;right:0;bottom:30px;text-align:center;padding:0 18px}
 .kicker{font:600 11px Cinzel,serif;letter-spacing:.24em;text-transform:uppercase;color:#fff3d4;text-shadow:0 2px 10px rgba(0,0,0,.9)}
 h1{margin-top:12px;line-height:1}
-h1 .script{display:block;font:400 clamp(50px,10vw,84px)/.92 "Great Vibes",cursive;margin-bottom:-.12em;color:#ffe9b0;text-shadow:0 0 18px rgba(212,37,63,.55),0 2px 12px rgba(0,0,0,.9)}
-h1 .caps{display:block;margin-top:0;font:600 clamp(20px,4.4vw,34px)/1.15 Cinzel,serif;letter-spacing:.08em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.9))}
+h1 .script{display:block;font:400 clamp(50px,10vw,84px)/.92 "Great Vibes",cursive;padding:.25em .35em .3em;margin:-.25em -.35em calc(-.12em - .3em);color:#ffe9b0;text-shadow:0 0 18px rgba(212,37,63,.55),0 2px 12px rgba(0,0,0,.9)}
+h1 .caps-sh{display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.9))} /* shadow on a wrapper – filter + background-clip:text on one element breaks in Safari */
+h1 .caps{display:block;margin-top:0;font:600 clamp(20px,4.4vw,34px)/1.15 Cinzel,serif;letter-spacing:.08em}
+.hero-title.rv{transform:none} /* fade only – keeps the big script text sharp on iOS */
 .garland{height:72px;margin:-34px 0 -20px;position:relative;z-index:3;pointer-events:none;background:url(img/xmas-garland.webp) center top/auto 100% repeat-x;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55))}
 @media(max-width:600px){.garland{height:58px;margin:-28px 0 -16px}}
 
@@ -71,7 +73,8 @@ h1 .caps{display:block;margin-top:0;font:600 clamp(20px,4.4vw,34px)/1.15 Cinzel,
 .price{position:relative;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:26px;margin-top:40px;padding:24px 28px;border-radius:16px;
  background:radial-gradient(120% 140% at 0% 50%,rgba(212,37,63,.55),rgba(74,10,20,.95) 55%,rgba(30,4,9,.97));
  box-shadow:0 0 0 1px var(--gold),inset 0 0 0 5px rgba(20,3,7,.85),inset 0 0 0 6px rgba(217,178,92,.35),0 14px 30px rgba(0,0,0,.5)}
-.price .amount{font:700 clamp(42px,8vw,58px)/1 Cinzel,serif;text-align:center;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.price .amount-sh{filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.price .amount{font:700 clamp(42px,8vw,58px)/1 Cinzel,serif;text-align:center}
 .price .amount small{display:block;margin-top:4px;font:400 26px "Great Vibes",cursive;-webkit-text-fill-color:#ffe9b0;color:#ffe9b0}
 .price p{font-size:16px;color:#fff3d4}.price p strong{display:block;font:600 17px/1.35 Cinzel,serif;letter-spacing:.02em;color:#ffe9b0}
 .price p span{display:block;margin-top:6px;color:var(--muted);font-size:14px}
@@ -96,9 +99,10 @@ a.book:hover{box-shadow:0 0 0 1px var(--gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),
 #intro::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
  background:radial-gradient(70% 60% at 50% 42%,rgba(0,0,0,.05),rgba(0,0,0,.55) 75%,rgba(0,0,0,.85)),linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 70%,rgba(0,0,0,.6))}
 #intro canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
-.i-title{position:absolute;z-index:3;left:0;right:0;top:50%;transform:translateY(-62%);text-align:center;padding:0 22px;text-shadow:0 2px 20px rgba(0,0,0,.9)}
+/* text animations use only opacity + small translateY (no scale, no %-translate): Safari/iOS clips and blurs scaled text layers */
+.i-title{position:absolute;z-index:3;inset:0;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:0 22px 9vh;text-shadow:0 2px 20px rgba(0,0,0,.9)}
 .i-title .k{display:block;font:600 11px Cinzel,serif;letter-spacing:.32em;text-transform:uppercase;color:#fff3d4;opacity:0;animation:i-up .9s ease-out 1.3s forwards}
-.i-title .s{display:block;margin-top:14px;font:400 clamp(60px,13vw,120px)/.92 "Great Vibes",cursive;margin-bottom:-.12em;color:#ffe9b0;opacity:0;
+.i-title .s{display:block;font:400 clamp(60px,13vw,120px)/.92 "Great Vibes",cursive;padding:.3em .4em .35em;margin:calc(14px - .3em) -.4em calc(-.12em - .35em);color:#ffe9b0;opacity:0;
  text-shadow:0 0 26px rgba(212,37,63,.7),0 0 6px rgba(255,233,176,.6),0 3px 16px rgba(0,0,0,.9);animation:i-in 1.4s ease-out 1.7s forwards}
 .i-title .c{display:block;margin-top:0;font:600 clamp(17px,4.2vw,34px)/1.1 Cinzel,serif;letter-spacing:.16em;color:#fff3d4;opacity:0;animation:i-track 1.6s cubic-bezier(.2,.7,.2,1) 2.3s forwards}
 .i-title .ln{display:block;width:min(70vw,420px);height:1px;margin:16px auto 0;background:linear-gradient(90deg,transparent,#f3d991,transparent);transform:scaleX(0);animation:i-line 1s ease-out 2.9s forwards}
@@ -107,12 +111,12 @@ a.book:hover{box-shadow:0 0 0 1px var(--gold-hi),inset 0 0 0 5px rgba(8,4,5,.9),
 #intro .flash{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;background:radial-gradient(60% 50% at 50% 45%,rgba(255,240,200,.9),rgba(243,217,145,.25) 45%,transparent 75%)}
 #intro.out{animation:i-out 1.2s ease-in-out forwards}
 #intro.out .flash{animation:i-flash 1.2s ease-out forwards}
-#intro.out .i-title{transition:transform 1.2s ease-in,opacity 1s ease-in;transform:translateY(-62%) scale(1.15);opacity:0}
+#intro.out .i-title{transition:transform 1.2s ease-in,opacity 1s ease-in;transform:translateY(-24px);opacity:0}
 @keyframes i-bg{0%{opacity:0;transform:scale(1.18)}18%{opacity:1}100%{opacity:1;transform:scale(1.02)}}
 @keyframes i-bg-pan{0%{opacity:0;transform:translate3d(calc((100vw - 100%) * .12),0,0) scale(1.12)}18%{opacity:1}100%{opacity:1;transform:translate3d(calc((100vw - 100%) * .7),0,0) scale(1)}}
 @keyframes i-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes i-in{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
-@keyframes i-track{from{opacity:0;transform:scaleX(1.45)}to{opacity:1;transform:none}}
+@keyframes i-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes i-track{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes i-line{to{transform:scaleX(1)}}
 @keyframes i-flash{0%{opacity:0}30%{opacity:.85}100%{opacity:0}}
 @keyframes i-out{0%,25%{opacity:1}100%{opacity:0;visibility:hidden}}
@@ -206,7 +210,7 @@ fieldset.fld{border:0}
   <a class="back" href="./">‹ Gold Worlds 2027</a>
   <div class="hero-title rv">
     <div class="kicker">Welcome to our</div>
-    <h1><span class="script">Vienna</span><span class="caps gt">Worlds Sightseeing Tour</span></h1>
+    <h1><span class="script">Vienna</span><span class="caps-sh"><span class="caps gt">Worlds Sightseeing Tour</span></span></h1>
   </div>
 </header>
 <div class="garland" aria-hidden="true"></div>
@@ -237,7 +241,7 @@ fieldset.fld{border:0}
   </div>
 
   <section class="price rv">
-    <div class="amount gt">€150,-<small>per day</small></div>
+    <div class="amount-sh"><div class="amount gt">€150,-<small>per day</small></div></div>
     <p><strong>Including entry tickets, guides &amp; bus transfer</strong><span>Not including food and drinks.</span></p>
   </section>
 
