@@ -51,34 +51,26 @@ h1 .caps{display:block;margin-top:10px;font:600 clamp(17px,3.6vw,24px)/1.2 Cinze
 
 /* party cards */
 .parties{display:grid;gap:34px}
-.party{position:relative;display:grid;grid-template-columns:300px 1fr;border-radius:18px;overflow:hidden;scroll-margin-top:16px;
+.party{position:relative;display:grid;grid-template-columns:380px 1fr;border-radius:18px;overflow:hidden;scroll-margin-top:16px;
  box-shadow:0 0 0 1px var(--acc-line),0 18px 40px rgba(0,0,0,.5)}
 @media(max-width:760px){.party{grid-template-columns:1fr}}
-.party .art{position:relative;display:grid;place-items:center;min-height:250px;padding:26px;background:var(--art-bg);overflow:hidden}
-.party .art svg,.party .art img{position:relative;width:min(100%,240px);height:auto;filter:drop-shadow(0 10px 16px rgba(0,0,0,.45))}
-.party .body{padding:30px 32px 30px;background:linear-gradient(160deg,rgba(28,7,11,.97),rgba(14,4,6,.98))}
+.party .art{position:relative;min-height:340px;overflow:hidden;background:#140407}
+.party .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--focus,50% 50%);transition:transform 1.2s ease}
+.party:hover .art img{transform:scale(1.03)}
+.party .art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 70%,rgba(14,4,6,.55))}
+@media(max-width:760px){.party .art{min-height:0;aspect-ratio:4/3}.party .art::after{background:linear-gradient(180deg,transparent 70%,rgba(14,4,6,.6))}}
+.party .body{display:flex;flex-direction:column;justify-content:center;padding:30px 32px 30px;background:linear-gradient(160deg,rgba(28,7,11,.97),rgba(14,4,6,.98))}
 @media(max-width:760px){.party .body{padding:26px 22px}}
 .when{font:700 11px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
 .party h2{margin:8px 0 4px;font:400 clamp(40px,7vw,56px)/1.05 "Great Vibes",cursive;color:var(--title);padding:.1em .3em .15em;margin-left:-.3em}
 .tag{font:italic 500 21px/1.4 "Cormorant Garamond",serif;color:#efe2c6}
-.dress{margin-top:20px;padding-top:18px;border-top:1px solid rgba(217,178,92,.25)}
-.dress h3{font:600 12px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-.dress ul{list-style:none;margin-top:10px;display:grid;gap:7px}
-.dress li{position:relative;padding-left:22px;color:#eadfca}
-.dress li::before{content:"✦";position:absolute;left:0;top:0;color:var(--acc);font-size:12px;line-height:1.9}
-.info{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.info span{font:600 10.5px Cinzel,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:999px;box-shadow:0 0 0 1px rgba(217,178,92,.35)}
+.dress{margin-top:20px;padding-top:16px;border-top:1px solid rgba(217,178,92,.25);color:#eadfca;font-size:16px}
+.dress b{display:block;margin-bottom:4px;font:600 11px Cinzel,serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 
 /* themes */
-#wien{--acc:#ff5a6e;--acc-line:rgba(230,50,70,.6);--title:#fff;
- --art-bg:linear-gradient(180deg,#c8102e 0 33.3%,#fbf7f0 33.3% 66.6%,#c8102e 66.6%)}
-#wien .art::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 50%,transparent 40%,rgba(60,0,10,.35))}
-#stetsons{--acc:#e8c26a;--acc-line:rgba(217,178,92,.7);--title:#ffe9b0;
- --art-bg:radial-gradient(80% 70% at 50% 45%,#3d5a80,#1e2f47 60%,#111b2b)}
-#stetsons .art::before{content:"";position:absolute;inset:0;opacity:.35;background:radial-gradient(1.5px 1.5px at 20% 25%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 75% 18%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 85% 70%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 12% 78%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 60% 85%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 40% 12%,#fff 50%,transparent 51%)}
-#masquerade{--acc:#e8c26a;--acc-line:rgba(217,178,92,.7);--title:#ffe9b0;
- --art-bg:radial-gradient(80% 70% at 50% 45%,#a01d33,#5a0d1a 60%,#2a060c)}
-#masquerade .art img{width:min(100%,260px);filter:drop-shadow(0 0 1px rgba(243,217,145,.55)) drop-shadow(0 10px 16px rgba(0,0,0,.6))}
+#wien{--acc:#ff5a6e;--acc-line:rgba(230,50,70,.6);--title:#fff;--focus:35% 60%}
+#stetsons{--acc:#e8c26a;--acc-line:rgba(217,178,92,.7);--title:#ffe9b0;--focus:62% 55%}
+#masquerade{--acc:#e8c26a;--acc-line:rgba(217,178,92,.7);--title:#ffe9b0;--focus:55% 62%}
 
 .note{margin:42px auto 0;max-width:560px;text-align:center;color:var(--muted);font:italic 500 19px/1.5 "Cormorant Garamond",serif}
 .note b{font-style:normal;font-family:"Great Vibes",cursive;font-weight:400;font-size:30px;color:#ffe9b0;display:block;margin-bottom:4px}
@@ -94,7 +86,7 @@ h1 .caps{display:block;margin-top:10px;font:600 clamp(17px,3.6vw,24px)/1.2 Cinze
   <header class="hero">
     <div class="kicker">Gold Worlds 2027 · Vienna</div>
     <h1><span class="script">Theme Parties</span><span class="caps gt">Three nights · Three themes</span></h1>
-    <p class="lead">After the competition, the dance floor is yours. Dress up, dance and celebrate with the whole line dance world.</p>
+    <p class="lead">After the competition, the dance floor is yours.</p>
     <nav class="nights" aria-label="Parties">
       <a href="#wien">Thu · Red, White &amp; Wien</a><a href="#stetsons">Fri · Stetsons &amp; Tiaras</a><a href="#masquerade">Sat · Masquerade Ball</a>
     </nav>
@@ -105,78 +97,39 @@ h1 .caps{display:block;margin-top:10px;font:600 clamp(17px,3.6vw,24px)/1.2 Cinze
   <div class="parties">
     <!-- Thursday -->
     <article class="party rv" id="wien">
-      <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 200 200"><defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d991"/><stop offset=".55" stop-color="#d9b25c"/><stop offset="1" stop-color="#b98d36"/></linearGradient></defs>
-          <circle cx="100" cy="100" r="88" fill="#fbf7f0" stroke="url(#gg)" stroke-width="6"/>
-          <circle cx="100" cy="100" r="78" fill="none" stroke="#c8102e" stroke-width="2"/>
-          <!-- edelweiss -->
-          <g transform="translate(100 96)" fill="#fff" stroke="#c8102e" stroke-width="2.2" stroke-linejoin="round">
-            <g id="pet"><path d="M0-14C-9-24-9-44 0-56C9-44 9-24 0-14Z"/></g>
-            <use href="#pet" transform="rotate(45)"/><use href="#pet" transform="rotate(90)"/><use href="#pet" transform="rotate(135)"/>
-            <use href="#pet" transform="rotate(180)"/><use href="#pet" transform="rotate(225)"/><use href="#pet" transform="rotate(270)"/><use href="#pet" transform="rotate(315)"/>
-            <circle r="15" fill="#c8102e" stroke="none"/><g fill="#fbf7f0" stroke="none"><circle cx="-6" cy="-5" r="3.2"/><circle cx="6" cy="-5" r="3.2"/><circle cx="0" cy="5" r="3.2"/><circle cx="-7" cy="6" r="2.2"/><circle cx="7" cy="6" r="2.2"/><circle cx="0" cy="-9" r="2.2"/></g>
-          </g>
-        </svg>
-      </div>
+      <div class="art"><img src="img/party-wien.webp" srcset="img/party-wien-sm.webp 600w, img/party-wien.webp 1000w" sizes="(max-width:760px) 100vw, 380px" width="1000" height="1333" loading="lazy" alt="Red roses and edelweiss tied with a red-white-red ribbon, champagne and Vienna City Hall lights"></div>
       <div class="body">
         <div class="when">Thursday · 2 December 2027</div>
         <h2>Red, White &amp; Wien</h2>
-        <p class="tag">Welcome to Austria! We open Worlds in the colours of the Austrian flag.</p>
-        <div class="dress"><h3>Dress code</h3>
-          <ul><li>Red and white – head to toe, or just a touch</li><li>Stripes, polka dots, a red-white-red scarf or bandana</li><li>A little Vienna: an edelweiss, a red rose or a Christmas sparkle</li></ul>
-        </div>
-        <div class="info"><span>Time · coming soon</span><span>Venue · coming soon</span></div>
+        <p class="tag">Let’s kick off Worlds the Austrian way.</p>
+        <p class="dress"><b>Dress code</b>Red &amp; white, the colours of Austria.</p>
       </div>
     </article>
 
     <!-- Friday -->
     <article class="party rv" id="stetsons">
-      <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 220 190"><defs>
-          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d991"/><stop offset=".55" stop-color="#d9b25c"/><stop offset="1" stop-color="#a87a22"/></linearGradient>
-          <linearGradient id="hat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79a62"/><stop offset="1" stop-color="#7d5530"/></linearGradient></defs>
-          <!-- cowboy hat: crown with a centre dent, brim curling up at the sides -->
-          <path d="M64 124 C58 94 66 64 86 58 C97 55 102 66 110 66 C118 66 123 55 134 58 C154 64 162 94 156 124Z" fill="url(#hat)" stroke="#4a3018" stroke-width="2"/>
-          <path d="M100 66 C104 80 104 100 102 118 M120 66 C116 80 116 100 118 118" fill="none" stroke="#5c3a1c" stroke-width="1.6" opacity=".55"/>
-          <path d="M8 104 C16 138 58 150 110 148 C162 150 204 138 212 104 C200 124 176 130 158 124 Q110 116 62 124 C44 130 20 124 8 104Z" fill="url(#hat)" stroke="#4a3018" stroke-width="2"/>
-          <path d="M62 112 Q110 104 158 112 L158 125 Q110 117 62 125Z" fill="#2a1a0c"/>
-          <!-- tiara on the hat band -->
-          <g fill="url(#g2)" stroke="#7a5418" stroke-width="1" stroke-linejoin="round">
-            <path d="M70 122 Q110 112 150 122 L150 116 L141 104 L132 112 L121 90 L110 76 L99 90 L88 112 L79 104 L70 116Z"/>
-          </g>
-          <g fill="#fffaf0" stroke="#b98d36" stroke-width=".8"><circle cx="110" cy="72" r="4.5"/><circle cx="79" cy="101" r="3"/><circle cx="141" cy="101" r="3"/><circle cx="99" cy="88" r="2.4"/><circle cx="121" cy="88" r="2.4"/></g>
-          <path d="M110 92 l5 9 -5 9 -5 -9z" fill="#c8213f" stroke="#7a1022" stroke-width=".8"/>
-          <!-- sparkles -->
-          <g fill="#fff3c4"><path d="M36 64l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path d="M186 58l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M190 160l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></g>
-        </svg>
-      </div>
+      <div class="art"><img src="img/party-stetsons.webp" srcset="img/party-stetsons-sm.webp 600w, img/party-stetsons.webp 1000w" sizes="(max-width:760px) 100vw, 380px" width="1000" height="1333" loading="lazy" alt="White cowboy hat with a crystal tiara on its brim"></div>
       <div class="body">
         <div class="when">Friday · 3 December 2027</div>
         <h2>Stetsons &amp; Tiaras</h2>
-        <p class="tag">Country meets royalty. Tonight every cowboy is a king and every cowgirl a queen.</p>
-        <div class="dress"><h3>Dress code</h3>
-          <ul><li>A cowboy hat, a tiara – or both</li><li>Boots, denim, fringe and western shirts</li><li>Add the royal touch: rhinestones, gold and glitter</li></ul>
-        </div>
-        <div class="info"><span>Time · coming soon</span><span>Venue · coming soon</span></div>
+        <p class="tag">Where cowboys meet royalty.</p>
+        <p class="dress"><b>Dress code</b>Cowboy hat, tiara, or both. Sparkle welcome.</p>
       </div>
     </article>
 
     <!-- Saturday -->
     <article class="party rv" id="masquerade">
-      <div class="art" aria-hidden="true"><img src="img/party-mask.webp" alt="" width="900" height="512"></div>
+      <div class="art"><img src="img/party-masquerade.webp" srcset="img/party-masquerade-sm.webp 600w, img/party-masquerade.webp 1000w" sizes="(max-width:760px) 100vw, 380px" width="1000" height="1333" loading="lazy" alt="Gold lace masquerade mask with feathers on wine-red velvet"></div>
       <div class="body">
         <div class="when">Saturday · 4 December 2027</div>
         <h2>The Worlds Masquerade Ball</h2>
-        <p class="tag">A night of mystery &amp; elegance to crown the Worlds.</p>
-        <div class="dress"><h3>Dress code</h3>
-          <ul><li>Elegant evening wear – black, gold or wine red</li><li>Your mask: you will find a black mask waiting for you at Worlds</li><li>Make it yours – gold, lace, feathers, crystals, any style you love</li></ul>
-        </div>
-        <div class="info"><span>Time · coming soon</span><span>Venue · coming soon</span></div>
+        <p class="tag">A night of mystery &amp; elegance.</p>
+        <p class="dress"><b>Dress code</b>Evening wear and your Worlds mask, decorated your way.</p>
       </div>
     </article>
   </div>
 
-  <p class="note"><b>See you on the dance floor!</b>More details about each party will follow here soon.</p>
+  <p class="note"><b>See you on the dance floor!</b>Times and venues coming soon.</p>
 </main>
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
