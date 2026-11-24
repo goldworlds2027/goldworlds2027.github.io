@@ -30,7 +30,7 @@
 /* Event links – an empty value displays a disabled “Coming soon” item. */
 const LINKS = {
   website: "", registration: "", heinhotel: "https://onepagebooking.com/hein", reinisch: "https://www.dasreinisch.at/linedance-wm/",
-  shuttle: "", tour: "tour.html", song: "", facebook: "", instagram: "", email: ""
+  shuttle: "", tour: "tour.html", parties: "parties.html", song: "", facebook: "", instagram: "", email: ""
 };
 const CODES = { heinhotel: "Linedance WM", reinisch: "Linedance" };
 </script>
@@ -535,7 +535,7 @@ const T = {
       stay:"Stay & Travel",more:"More",soon:"Coming soon",code:"Booking code",copy:"Copy",copied:"Copied ✓",book:"Book now",
       airport:"from Vienna Airport",venue:"to the venue",breakfast:"Breakfast included",
       website:["Official information","Schedule, rules & news"],registration:["Registration","Dancers & tickets"],
-      shuttle:["Hotel ↔ venue shuttle","Transport information"],tour:["Worlds Sightseeing Tour","Discover Vienna with us"],
+      shuttle:["Hotel ↔ venue shuttle","Transport information"],tour:["Worlds Sightseeing Tour","Discover Vienna with us"],parties:["Theme Parties","Three nights · three themes"],
       song:["Official song","Listen & learn the dance"],email:["Contact us","Questions? Write to the organisers"],
       footer:"See you on the dance floor!"},
   de:{sub:"Line Dance Weltmeisterschaft",dates:"2. – 5. Dezember 2027",days:"Tage",hours:"Std.",mins:"Min.",secs:"Sek.",
@@ -543,7 +543,7 @@ const T = {
       stay:"Hotels & Anreise",more:"Mehr",soon:"Demnächst",code:"Buchungscode",copy:"Kopieren",copied:"Kopiert ✓",book:"Jetzt buchen",
       airport:"vom Flughafen Wien",venue:"zum Veranstaltungsort",breakfast:"Frühstück inklusive",
       website:["Offizielle Informationen","Zeitplan, Regeln & News"],registration:["Anmeldung","Tänzer & Tickets"],
-      shuttle:["Shuttle Hotel ↔ Halle","Transportinformationen"],tour:["Worlds Sightseeing Tour","Wien mit uns entdecken"],
+      shuttle:["Shuttle Hotel ↔ Halle","Transportinformationen"],tour:["Worlds Sightseeing Tour","Wien mit uns entdecken"],parties:["Themenpartys","Drei Abende · drei Themen"],
       song:["Offizieller Song","Anhören & Tanz lernen"],email:["Kontakt","Fragen? Schreib den Veranstaltern"],
       footer:"Wir sehen uns auf der Tanzfläche!"},
   cs:{sub:"Mistrovství světa v line dance",dates:"2. – 5. prosince 2027",days:"dní",hours:"hod.",mins:"min.",secs:"sek.",
@@ -551,7 +551,7 @@ const T = {
       stay:"Ubytování a doprava",more:"Další",soon:"Již brzy",code:"Rezervační kód",copy:"Kopírovat",copied:"Zkopírováno ✓",book:"Rezervovat",
       airport:"od letiště Vídeň",venue:"na místo konání",breakfast:"Snídaně v ceně",
       website:["Oficiální informace","Program, pravidla a novinky"],registration:["Registrace","Tanečníci a vstupenky"],
-      shuttle:["Kyvadlová doprava hotel ↔ hala","Informace o dopravě"],tour:["Worlds Sightseeing Tour","Poznejte s námi Vídeň"],
+      shuttle:["Kyvadlová doprava hotel ↔ hala","Informace o dopravě"],tour:["Worlds Sightseeing Tour","Poznejte s námi Vídeň"],parties:["Tematické párty","Tři večery · tři témata"],
       song:["Oficiální song","Poslechni si a nauč se tanec"],email:["Kontakt","Máte dotaz? Napište pořadatelům"],
       footer:"Uvidíme se na parketu!"}
 };
@@ -579,7 +579,7 @@ function render(){
   const t=T[lang];document.documentElement.lang=lang;
   document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t[el.dataset.t]);
 
-  document.getElementById("main-links").innerHTML=btn("registration","✦","primary")+btn("website","i")+btn("tour","✧");
+  document.getElementById("main-links").innerHTML=btn("registration","✦","primary")+btn("website","i")+btn("tour","✧")+btn("parties","♛");
   document.getElementById("hotels").innerHTML=HOTELS.map(h=>{
     const link=href(h.key);
     return `<section class="hotel"><h3>${esc(h.name)}</h3>
