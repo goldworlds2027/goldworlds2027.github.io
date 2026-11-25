@@ -30,7 +30,7 @@
 /* Event links – an empty value displays a disabled “Coming soon” item. */
 const LINKS = {
   website: "", registration: "", heinhotel: "https://onepagebooking.com/hein", reinisch: "https://www.dasreinisch.at/linedance-wm/",
-  shuttle: "", tour: "tour.html", parties: "parties.html", song: "", facebook: "", instagram: "", email: ""
+  shuttle: "", tour: "tour.html", parties: "parties.html", song: "", facebook: "", instagram: "", email: "contact.html"
 };
 const CODES = { heinhotel: "Linedance WM", reinisch: "Linedance" };
 </script>
@@ -562,7 +562,7 @@ const HOTELS = [
 const EVENT = new Date("2027-12-02T09:00:00+01:00");
 const lang = "en";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function href(k){const v=LINKS[k];if(!v)return"";return k==="email"?"mailto:"+v:v}
+function href(k){const v=LINKS[k];if(!v)return"";return k==="email"&&v.includes("@")?"mailto:"+v:v}
 function btn(k,icon,cls=""){
   const t=T[lang],[title,sub]=t[k],h=href(k);
   const inner=`<span class="ic" aria-hidden="true">${icon}</span><span class="tx"><strong>${esc(title)}</strong><small>${esc(sub)}</small></span>`;
