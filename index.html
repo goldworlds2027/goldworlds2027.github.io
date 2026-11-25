@@ -29,7 +29,7 @@
 <script>
 /* Event links – an empty value displays a disabled “Coming soon” item. */
 const LINKS = {
-  website: "", registration: "", heinhotel: "https://onepagebooking.com/hein", reinisch: "https://www.dasreinisch.at/linedance-wm/",
+  website: "https://www.gold-worlds.com/home", registration: "", heinhotel: "https://onepagebooking.com/hein", reinisch: "https://www.dasreinisch.at/linedance-wm/",
   shuttle: "", tour: "tour.html", parties: "parties.html", song: "", facebook: "", instagram: "", email: "contact.html"
 };
 const CODES = { heinhotel: "Linedance WM", reinisch: "Linedance" };
@@ -534,7 +534,7 @@ const T = {
       countdown:"The Grand Countdown",tagline:"Let the grand celebration begin.",explore:"Explore the Event",
       stay:"Stay & Travel",more:"More",soon:"Coming soon",code:"Booking code",copy:"Copy",copied:"Copied ✓",book:"Book now",
       airport:"from Vienna Airport",venue:"to the venue",breakfast:"Breakfast included",
-      website:["Official information","Schedule, rules & news"],registration:["Registration","Dancers & tickets"],
+      website:["Gold Worlds Website","Registration, schedule, rules & news"],registration:["Registration","Dancers & tickets"],
       shuttle:["Hotel ↔ venue shuttle","Transport information"],tour:["Worlds Sightseeing Tour","Discover Vienna with us"],parties:["Theme Parties","Three nights · three themes"],
       song:["Official song","Listen & learn the dance"],email:["Contact us","Any questions? We got u!"],
       footer:"See you on the dance floor!"},
@@ -542,7 +542,7 @@ const T = {
       countdown:"Der große Countdown",tagline:"Das große Fest kann beginnen.",explore:"Entdecke die Veranstaltung",
       stay:"Hotels & Anreise",more:"Mehr",soon:"Demnächst",code:"Buchungscode",copy:"Kopieren",copied:"Kopiert ✓",book:"Jetzt buchen",
       airport:"vom Flughafen Wien",venue:"zum Veranstaltungsort",breakfast:"Frühstück inklusive",
-      website:["Offizielle Informationen","Zeitplan, Regeln & News"],registration:["Anmeldung","Tänzer & Tickets"],
+      website:["Gold Worlds Website","Anmeldung, Zeitplan, Regeln & News"],registration:["Anmeldung","Tänzer & Tickets"],
       shuttle:["Shuttle Hotel ↔ Halle","Transportinformationen"],tour:["Worlds Sightseeing Tour","Wien mit uns entdecken"],parties:["Themenpartys","Drei Abende · drei Themen"],
       song:["Offizieller Song","Anhören & Tanz lernen"],email:["Kontakt","Fragen? Schreib den Veranstaltern"],
       footer:"Wir sehen uns auf der Tanzfläche!"},
@@ -550,7 +550,7 @@ const T = {
       countdown:"Odpočet do zahájení",tagline:"Oslava tance může začít.",explore:"Prozkoumejte událost",
       stay:"Ubytování a doprava",more:"Další",soon:"Již brzy",code:"Rezervační kód",copy:"Kopírovat",copied:"Zkopírováno ✓",book:"Rezervovat",
       airport:"od letiště Vídeň",venue:"na místo konání",breakfast:"Snídaně v ceně",
-      website:["Oficiální informace","Program, pravidla a novinky"],registration:["Registrace","Tanečníci a vstupenky"],
+      website:["Gold Worlds Website","Registrace, program, pravidla a novinky"],registration:["Registrace","Tanečníci a vstupenky"],
       shuttle:["Kyvadlová doprava hotel ↔ hala","Informace o dopravě"],tour:["Worlds Sightseeing Tour","Poznejte s námi Vídeň"],parties:["Tematické párty","Tři večery · tři témata"],
       song:["Oficiální song","Poslechni si a nauč se tanec"],email:["Kontakt","Máte dotaz? Napište pořadatelům"],
       footer:"Uvidíme se na parketu!"}
@@ -579,7 +579,7 @@ function render(){
   const t=T[lang];document.documentElement.lang=lang;
   document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t[el.dataset.t]);
 
-  document.getElementById("main-links").innerHTML=btn("registration","✦","primary")+btn("website","i")+btn("tour","✧")+btn("parties","♛");
+  document.getElementById("main-links").innerHTML=btn("website","✦","primary")+btn("tour","✧")+btn("parties","♛");
   document.getElementById("hotels").innerHTML=HOTELS.map(h=>{
     const link=href(h.key);
     return `<section class="hotel"><h3>${esc(h.name)}</h3>
